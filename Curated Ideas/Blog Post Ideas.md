@@ -23,12 +23,7 @@ Article to post
 21. Agents skills GitHub repo
 22. Agent Engine Optimization 
 23. Discovery is hard.
-24.
-24. Layer 3 (done) 
-25. Learning golang Or JAVA
-26. Read claude code doc
-27. Complete cowork course in anthropic
-
-28. Write Blog about layer and second order thinking, then layer 3 roadmap then learn in public all pillars of layer 3 roadmap (done) 
-
-29. Find meetups
+24. Learning golang Or JAVA
+25. Read claude code doc
+26. Complete cowork course in anthropic
+27. Find meetups
