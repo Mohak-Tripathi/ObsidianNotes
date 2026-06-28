@@ -1,0 +1,16 @@
+# Obsidian local state (machine-specific, do not sync)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/plugins/*/data.json
+
+# Syncthing
+.stfolder/
+.stignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Trash
+.trash/
