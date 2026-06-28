@@ -299,4 +299,4 @@ Send me a filled card and I'll pressure-test whether the metric is real or wheth
 
 ---
 
-_System learns ≠ model learns. Postgres is truth. The simplest pattern that passes evals wins. The graph where a system-found problem goes down after a system-proposed fix — that's the finish line._
+_System learns ≠ model learns. Postgres is truth. The simplest pattern that passes evals wins. The graph where a system-found problem goes down after a system-proposed fix — that's the finish line.  You will reach there.
