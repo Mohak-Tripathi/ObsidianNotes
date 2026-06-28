@@ -14,22 +14,21 @@ Article to post
 12. X.com account creation 
 13. Masterclass to them 
 14. Referral system 
-15. Career ops setup (done) 
-16. Behaviour rounds prep round test 
-17. Leetcode practice 
-18. Explore Hermes
-19. Insthyre, cutshort, LinkedIn, naukri, angelist
-20. Learnt subagents (done) 
-21. Claude in browser 
-22. Agents skills GitHub repo
-23. Agent Engine Optimization 
-24. Discovery is hard.
-25. Add ideas notes in obsidian 
-26. Layer 3 (done) 
-27. Learning golang Or JAVA
-28. Read claude code doc
-29. Complete cowork course in anthropic
+15. Behaviour rounds prep round test 
+16. Leetcode practice 
+17. Explore Hermes
+18. Insthyre, cutshort, LinkedIn, naukri, angelist
+19. Learnt subagents (done) 
+20. Claude in browser 
+21. Agents skills GitHub repo
+22. Agent Engine Optimization 
+23. Discovery is hard.
+24.
+24. Layer 3 (done) 
+25. Learning golang Or JAVA
+26. Read claude code doc
+27. Complete cowork course in anthropic
 
-30. Write Blog about layer and second order thinking, then layer 3 roadmap then learn in public all pillars of layer 3 roadmap (done) 
+28. Write Blog about layer and second order thinking, then layer 3 roadmap then learn in public all pillars of layer 3 roadmap (done) 
 
-31. Find meetups
+29. Find meetups
