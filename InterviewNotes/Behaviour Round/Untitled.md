@@ -1,1 +1,0 @@
-Demo is there therefore 2 days deadline - solve explicit not asking question 
