@@ -90,3 +90,91 @@ You provided enough detail for the interviewer to assess these areas.
 The interviewer got some signal but may want to probe deeper in these areas.
 
 - Did the project reveal leadership or team uplift appropriate to the candidate's level?
+
+
+
+##### Tell me about your most difficult working relationship
+
+“So, recently what happened is we have been building JagoAI product, which is a flagship product of VLine. And so, we have been building it for a long period of time, around two years. And what happened is that we get feedback and all, and we make so many changes. So, the UX has fallout very badly, and therefore it is a little bit hard to understand the product for the new people. So, therefore, the CEO has instructed the UI/UX team to revamp the UI and make it a better UX flow of the entire product. The UI/UX team has taken time and came up with the revamping. And because I have been handling the full stack side of it, being a four-year experience, we do have a four-people team, two front-end developers, two full-stack developers, along with me. So, generally I do take care of customer interaction and the CEO interaction as well for the full stack related work. So, when this thing, revamping came, CEO called me, and he wanted this revamping to be done in two days. According to him, the AI advancement has been taken place. And through AI assistant coding, IDs like Cursor and all, this revamping could be done in a much faster pace. So, that is the context. And therefore, I took my time and I created a risk mitigation plan because I knew that in two days it would be very difficult to complete the whole revamping of a product which has been going on for a long period of time. So, therefore, I created a risk mitigation plan where I told him that even the UI revamping is not just a, you know, UI, like just a HTML changes, it's like a data layer along with it, API contract. Everything is there which can hamper and can have a catastrophic effect as well if we do not take care of everything properly. So, he understood and appreciated. And therefore, he said that, okay, go ahead with your plan and take some time, but get the job done as soon as possible. So, therefore, I divided the work. And how I divided the work is that the modules which the team has taken, the person who has taken the earlier modules, I gave the same modules to them again so that they will have the complete understanding of those modules. And we completed the task in around seven to eight days. And in that process, every two days I showed the progress as well, and broadly he was satisfied with it. So, the learning side what happened was, the AI coding has improved a lot, and this would not be possible to do even seven to eight days. And we are able to complete this work of at least a one-month work in seven to eight days. So, that is a drastic improvement. And generally, the conflict between me and CEO happens regarding the shipping ability and all. And I always, the tussle is that if you are building any greenfield project, which where the AI have the complete liberty, then you can ship far, much more faster. But when you have the code base which is already there, and when you have to tweak and revamp, then you have to be very careful and take care of other scenarios. Sometimes this become a point of contention between me and CEO, but we do resolve the issue in more fact-based way.”
+
+###### Follow-up
+
+###### What did this experience change about how you and the CEO work together on timeline discussions now, and did it shift anything about how you personally approach those conversations?
+
+“So, generally, what I realized with him is that, like, you cannot expect a non- like, you have to be a little bit different when you're talking with a technical founder people or non-technical person. Both have a different way of understanding. So, whenever you are talking to a non-technical person, they do not understand the complexity. And that is fine with it. The only way is that you have to express the concern and pitfalls in their own language, so that once they understand and appreciate the depth of our work, then they also appreciate. So, you cannot expect without clear communication in their tonality, in their understanding, in their own vocabulary. And if you think that without being vocal about it, that not gonna happen. So, the first and foremost thing is talking their language, number one. Number two is that, do not react whenever any hard deadline comes in and very aggressive deadline. That generally also matters on whether it's internal projects or external projects. So, and you also need to understand the CEOs generally give you the aggressive deadline because they want to get the job done as soon as possible. And they want to create a healthy sense of urgency. And that's their intent. And that is also good enough because that is how everybody push. So, once you put yourself in their shoes, you will be able to appreciate why they put that kind of aggressive deadlines. So, for me, what I need to do is that, I obviously need to maintain the pace. But at the same time, we cannot compromise on the quality. Okay? So, and the biggest thing is that what I realized with working with my CEO is that, you just show up and show your progress, even, and there should not be a lack of communication. So, even if you are not completing the work because of the aggressive deadline, but if you show that you have put in complete effort and you have made good progress, even though the project is not completely completed, but he appreciate and give you the time as well. So, what matters to the CEO is the intent, right? Intent and the personal effort. If these two things are there, then there will be a mutual harmony and we able to work together properly. So, that is what my learning with him.”
+
+###### Follow-up
+
+###### Were there any moments during the revamp where things got tense or went sideways, and how did you handle it in the moment with the CEO or your team?
+
+“I will not say in that scenario things went really bad or very sideways. There is also one of the other scenarios which I will say is that generally, I also have one of the team members who is hard to work with. And so he is in, for example, the Chatbot AI product is the product of a full stack and the AI component is also involved. So there is an AI team which also works. And there is one person who is extremely good at it, but in his work. But what happens is that he do not like to, you know, work in a collective environment. So he has their own way of doing work, and he is like a lone wolf. The problem sometimes happens is that, for example, API integration. And so what happens is that sometimes he changes the response, he changes the request cycle, and that creates a big problem because things break. And according to him, things are working in his own space, and he do not care too much on those whether the product in itself is working or not. So because he generally works as an independent team member on other projects as well. So generally, what, he and he is a little bit hard to work with. So what I did is that I tried to understand his ground, I tried to understand how he has been working. And when I'm able to understand empathetically, I realize that, okay, this is why it is and how he is working as it is. So what I like, we had so many contentions, but one of the things which we realized is that he do not like to interact too much with the team members. So I told him, whenever you are making any changes, it's very important, just shoot one email, even if you are changing, at least I will know this is a change and that's a, you know, breaking change. So keeping that in mind, if you will just document, if you just send one email, that is more than enough to be a little bit aware of and do the changes accordingly. So that is one of the way where in that scenario, what happens is things got escalated because just imagine the product is working and then it is not working. And you realize that there is no mistake from your end. But the only thing is that the way you are sending the request to the AI/ML team, and that AI/ML team is now accepting the response in a different way, and they are not flexible enough, and they are rejecting the request response which is coming from the full stack side because of the schema which they have changed in the first place. So that is frustrating and sometimes the demo team do not understand, they just, they do not know where the problem is. But because we are the full stack side, we are the client-facing interface, so we sometimes have to handle that problem. So these are one of the other instances of conflict scenarios. But at the same time, we have been working together with that particular person, and now we are in that scenario where the clear communication through email is happening, and we have reached some consensus level.”
+
+###### Follow-up
+
+###### How did the AI engineer react when you first proposed the email notification agreement, and what did you do if he didn't follow through on it?
+
+“Yeah, so, basically, see, everybody has some accountability and up to some extent. The only thing which I did was making his work easy. He do not like to take initiative in that sense, and he do not want to proactively, you know, check things and the whole product is working fine. So, that burden of proof I took it on my end, and the bare minimum information which I need from him that what is the schema change, what is the request response cycle, is now currently. So that is what the expectation I had, and that was a very bare minimum which you require to get it. So therefore, he agreed on that part. And so, the one thing. If we just imagine the scenario where he would not even work and do not notify when he's changing that through email itself, which is the very least. Then one thing which I could do is that I would have to proactively checking whether the product is working or not, whether that API endpoint is working where I'm sending the response to the AI side. If not, then maybe something has changed. So I will have to ask him directly what has changed. And just imagine if that is also not working, then I would have to escalate the issue up to maybe just my manager, not the very high level, but just a manager, so that he will also understand and maybe he can help me out because I exhausted all my way of resolving this issue.”
+
+You're on the right track.
+
+---
+
+Summary
+
+You show genuine empathy and self-awareness, which are real strengths here. The two stories you chose are relevant and grounded in real consequences, but the ownership actions and resolutions stay at a surface level for mid-level expectations. Sharpening how you describe what structurally changed in the working relationship would move this to a solid pass.
+
+What went well
+
+- Your empathy is genuinely strong in both stories. You articulate why the CEO sets aggressive deadlines (healthy urgency, intent) and why the AI engineer works the way he does, treating both as rational actors rather than difficult personalities.
+    
+- Your self-awareness in the follow-up is specific and behavioral. Insights like 'speak their language,' 'don't react to aggressive deadlines,' and 'show progress even if incomplete' reflect real learning that changed how you operate.
+    
+- You proactively created a risk mitigation plan with the CEO rather than just complaining or complying, which shows mid-level judgment about how to handle authority-driven pressure.
+    
+- The AI engineer story is well-chosen because the impact was concrete: the product broke in ways that were invisible to the demo team, creating real delivery risk.
+    
+
+What needs improvement
+
+- The resolution for the AI engineer story is vague. 'We have reached some consensus level' does not tell the interviewer what actually changed in the working pattern or whether the integration breaks stopped happening.
+    
+- The ownership actions in both stories are relatively minimal. A risk mitigation plan and an email agreement are good starts, but a mid-level answer would ideally show a more deliberate effort to reshape the collaboration structure, such as a recurring sync, a shared schema contract, or a documented handoff protocol.
+    
+- The CEO story drifts toward a timeline negotiation rather than a true relationship difficulty. The rubric expects a relationship where friction had real impact on delivery or trust, and the CEO story resolves fairly quickly without much sustained tension.
+    
+- The answer is long and covers two separate stories, which dilutes focus. A tighter single story with more depth on resolution and outcome would be more effective than two stories with thin endings.
+    
+
+Suggestions to improve
+
+- For the AI engineer story, close the loop explicitly. Describe what changed after the email agreement: did the integration breaks stop? Did the demo failures go away? A concrete outcome like 'over the next sprint we had zero unannounced schema changes and the demo went cleanly' would make the resolution land much stronger.
+    
+- Elevate the ownership action in the AI engineer story. Instead of just proposing an email, talk about whether you proposed a shared API contract document, a lightweight schema versioning convention, or a brief weekly sync. These show you reshaped the collaboration structure, not just asked for a courtesy notification.
+    
+- Choose one story and go deep rather than covering two. The AI engineer story has more of the relationship difficulty texture the question is looking for. Lead with that, and use the CEO story only if asked about a second example.
+    
+- When describing resolution, explicitly contrast before and after. A phrase like 'before this, we were discovering breaks during demos; after the agreement, I had advance notice and could test proactively' makes the improvement in working effectiveness concrete and memorable.
+    
+
+Questions Behind the Question
+
+Interviewers are trying to gather detail which helps them feel more confident about their assessment. It's their job to ask questions to get this signal, and it's your job to provide a rich answer which helps them feel like you've performed at level.
+
+✓ Confident
+
+You provided enough detail for the interviewer to assess these areas.
+
+- Was the relationship difficulty meaningful and professionally consequential?
+    
+- Did the candidate show empathy toward the other person's perspective and constraints?
+    
+- Did the candidate take ownership for improving the relationship rather than just enduring or escalating it?
+    
+- Did the candidate show self-awareness and learning from the experience?
+    
+
+? Unsure
+
+The interviewer got some signal but may want to probe deeper in these areas.
+
+- Did the candidate resolve the issue in a way that improved working effectiveness, not just win the disagreement?
