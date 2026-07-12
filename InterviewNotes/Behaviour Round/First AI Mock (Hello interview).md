@@ -178,3 +178,87 @@ You provided enough detail for the interviewer to assess these areas.
 The interviewer got some signal but may want to probe deeper in these areas.
 
 - Did the candidate resolve the issue in a way that improved working effectiveness, not just win the disagreement?
+
+
+
+##### Why do you want to work at OpenAI?
+
+“Okay, so I have been a full stack developer for around three, four, for around four years. And I have shipped Terry Sage end-to-end, as I mentioned earlier. So I have divided my career path in the sense that I can understand and do full stack engineering end-to-end, and that is more of a deterministic level of engineering. And due to latest development in the AI side, and I have been exploring in the Terry Sage as well, I have integrated a couple of AI features like voice to text and text extraction pipeline which I built through LLM, so which can auto-fill all the details of a property schema, so that the user do not have to fill. There I found some reliability issues. Apart from that, I have been exploring AI products and building some of the projects myself as well. But I do not have a production-level experience of how the AI products, AI native products work. So that is the very reason I want to join OpenAI and want to explore what are the hardships you face to deploy an AI native product in the production.In the long run, I strongly believe that if I have faith within as well, and I feel that I want to build something, I want to contribute in the sense, in the hardware and software. And if I want to make hardware which is powered by AI intelligence. So that's the idea. That is, I think, can be done in this particular company, and that's why I want to join.”
+
+###### Follow-up
+
+###### What did you try when you ran into those reliability issues with the LLM text extraction pipeline, and how did you decide when to keep pushing versus change approach?
+
+“Yeah, so when this reliability issue came in, then I started researching how to make your AI, you know, workflow more deterministic, because I wanted determination. So I got to know about you have to increase the threshold. Rather than extracting data, if you do not have the confidence level of, let's say, 80%, then do not extract. Mostly it is suggestive in nature, so that's a good part. If the extraction is wrong, then the client can always change. So it's not like fixed. We are just using it as a suggestion because that is very important. We cannot completely rely on the AI answers. And also, apart from that, what I did is, I learned about the evals. So there is a human eval, there is a model-grade eval, there is programmatic eval as well. So I created a lot of prompts and created a dataset, and then I gave a lot of prompts and created a, finally, a score, average score, and run through the model grade. And if the result is out of 10, it's not improving, then I experimented it and improved the system prompt, improved the given single shot, multi-shot prompting as well so that the user can understand properly. Also, I used caching because when I gave multi-shot prompting, the context window can be increased, and therefore, and to reduce tokens, I used caching. So that much I did to improve the overall reliability and accuracy of the response.”
+
+###### Follow-up
+
+###### At what point during the reliability improvements did you feel like the approach wasn't working, and what made you decide to keep going rather than deprioritize the effort?
+
+“So, basically, I got to know when the people started saying that this input already has this information which your AI is not able to extract properly. This should be able to extract. So, when I was doing unit testing and my team members were testing in that point of time, I tested with some of the test cases, but when we started testing in the longer pool, then it started breaking and it is not extracting the parameters which it should have extracted. So, that is why I started learning, understanding it. I also realized that I'm not coming from the AI side, but you can learn and get it done. If I, as I said, I am just a sole developer as well. So, I put in one more day and tried to understand the bare minimum requirement to make this product reliable, and I made it work. And now it is working fine. If, just imagine if things would not work, then there are scenarios. So, for example, I will tell you one of the projects which I am working on Scopely. This is a project in my company. In my company, this is a service-based company, and what happens is, the service-based company, the sales team has to create a lot of proposals and send a lot of proposals in a very quick period of time, otherwise they will lose a client. And that lead becomes from hot to cold. And this is a big problem in the service-based company. So, I needed to create a proposal machine which can take the input from the CRM and email, and then, you know, process it well, and finally, you know, give the result. So, this product, to be very honest, is the third iteration when it got successful. There are the two iterations which we built. One is more of a traditional software engineering product where there were around 40 questions which the sales team has to fill, and then it will create, you know, a FRD and scope of work. But the problem is that sales team was not filling that 40 questions. And according to them, that it is, you cannot predefine the questions, and no one, no client will answer those 40 questions again, and that is not a right way to do it. So, that failed miserably. But we and CEO tried again. This time, what we did is, input taking was completely more, like we reduced some questions from 40 to reduced to 12, and we also build a rank pipeline which will embed all the older proposals which we have sent. And keeping these two information, we tried to create a proposal. But this time, the accuracy was not up, and the sales team rejected again. So, this third time, I built this completely end-to-end, and there is a complete AI product which is involved. And I taken the questions which the sales team is asking, also taken industry vertical, SIC code, and the user transcript, all the meeting which the sales team happens for that particular client, the user first email, and the first requirement document which the client has sent, the BRD document. I amalgamated all those things and created a proposal, and also given the sales team ability to edit and tweak and change things if they do want to. Also integrated verification check through Zoho, like a documentation which is publicly available, so to verify RFRs and whether the feasibility of the solution. With this, their efforts has reduced, and now they are far more happier. Still I am in the continuous feedback, I am taking feedback with them, trying to understand, and improving it. But this time, it is very promising and that they are using it. This is the third iteration which we have done. So yeah, this is, I am very proud of as well.”
+
+###### Follow-up
+
+###### You described three iterations on the Scopely proposal tool, with two failing before the third landed. After the second iteration was rejected by the sales team, what was your honest internal reaction, and what specifically made you believe a third attempt was worth pursuing rather than shelving the idea?
+
+“I think why I made a third attempt was because as the discovery as well, the input discovery, sales team is always telling new, new things and the feedback. So it was not like their feedback was exhausted as well. So that was a big thing that, till the point I feel I have completely, or exhausted all my options, and I have done all the things which I could, there is scope of work. And the thing is that it is a genuine problem which I am trying to solve as well for them. And due to AI advancement as well, that was also possible. So if the product which I built, it would not have been possible with five years, six years before the AI advancement. So, because the technology has excelled a lot, and the feedback the sales team was giving, which were genuine, and I failed to incorporate, and due to various reasons. And maybe because I have not asked them great questions in the first place, so that they have not responded in that way. So, what I realized is that with this whole action is that the learning part is asking the right question at the right time to the right people is extremely important. Extracting all their pain point is extremely important. Then building the right solutioning with the tech maturity whatever available is also very important. So, when the point which you said to me, when I should, you know, hang my boots, it's very simple. When I feel that I have taken all the feedback, there is no new feedback which is coming, and I have tried my level best, and after even incorporating all those, still it has not crossed the threshold of delta where the team is using and utilizing it, then I would have hanged my boots. But that was not the case here. The technology was advanced a lot, and inputs were genuine, which is worth incorporating and put effort. Therefore, I put effort, and third time that is working.”
+
+That's not quite it.
+
+---
+
+Summary
+
+Your answer shows genuine hands-on experience with AI integration and a commendable willingness to iterate, but as a motivation answer for OpenAI it falls below the mid-level bar. The core reason you cite, wanting to learn how AI-native products work in production, reads as opportunistic rather than chosen. You don't demonstrate specific knowledge of what makes OpenAI distinctive, you don't connect your past patterns to a logical next step there, and the hardware dream at the end feels disconnected and uncalibrated. A mid-level answer needs to show why OpenAI specifically, not just why AI.
+
+What went well
+
+- You share concrete, specific technical work: the LLM text extraction pipeline with confidence thresholds, evals, caching, and multi-shot prompting. This gives the interviewer real substance to assess.
+    
+- The three-iteration Scopely story demonstrates genuine persistence and a willingness to learn from failure, which is strong behavioral signal.
+    
+- You correctly identify a real pattern in your work: moving from deterministic engineering toward AI reliability problems, which is a legitimate bridge.
+    
+
+What needs improvement
+
+- Your stated motivation, wanting to learn how AI-native products work in production, could apply to any AI company and shows no specific knowledge of OpenAI's products, mission, or engineering challenges.
+    
+- The hardware/AI dream at the end is vague and uncalibrated for a mid-level role, and it makes the answer sound unfocused rather than intentional.
+    
+- You frame your background primarily as a gap ('I do not have production-level AI experience') rather than as a pattern of strengths that points naturally toward OpenAI.
+    
+- There is no acknowledgment of the complexity, tradeoffs, or responsibility involved in deploying AI at OpenAI's scale, which is a key signal at mid-level.
+    
+
+Suggestions to improve
+
+- Replace the generic learning motivation with a specific observation about OpenAI. For example, name a product decision, a research paper, or a deployment challenge you read about that connects to problems you've already worked on, then explain why that specific intersection is where you want to operate next.
+    
+- Reframe your background as a pattern of strengths rather than a gap. Instead of 'I don't have production AI experience,' say something like: 'Across my work I've repeatedly been drawn to the boundary between deterministic systems and probabilistic AI behavior, and I want to operate at that boundary at a larger scale.' This positions you as chosen, not opportunistic.
+    
+- Drop or sharpen the hardware/AI dream. If it's genuinely important to you, connect it concretely to what OpenAI is doing today. If you can't do that in one sentence, leave it out of this answer.
+    
+- Add one sentence showing you understand the responsibility of the environment. You don't need to sound like a policy expert, but acknowledging that shipping AI products at OpenAI's scale involves real tradeoffs around quality, reliability, and user trust will signal maturity that the rubric requires at mid-level.
+    
+
+Questions Behind the Question
+
+Interviewers are trying to gather detail which helps them feel more confident about their assessment. It's their job to ask questions to get this signal, and it's your job to provide a rich answer which helps them feel like you've performed at level.
+
+✓ Confident
+
+You provided enough detail for the interviewer to assess these areas.
+
+- Is the motivation specific and well-informed rather than generic?
+    
+- Does the candidate connect OpenAI's work to their own past choices and strengths?
+    
+
+? Unsure
+
+The interviewer got some signal but may want to probe deeper in these areas.
+
+- Does the candidate demonstrate mature judgment about the mission, tradeoffs, and operating environment?
+    
+- Is the candidate's expected impact calibrated to their level?
