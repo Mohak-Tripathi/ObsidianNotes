@@ -179,7 +179,7 @@
 
 ---
 
-## 9b. Capacity Planning — Fast & Rough _(my add — not Hello Interview)_
+## 9b. Capacity Planning — Fast & Rough _(my add — not Hello Interview)_    Remember Zeros in MB or GB
 
 > Goal: say a number that's _directionally correct_ in 30 seconds, then move on. Precision doesn't matter; the _decision_ it drives does.
 
