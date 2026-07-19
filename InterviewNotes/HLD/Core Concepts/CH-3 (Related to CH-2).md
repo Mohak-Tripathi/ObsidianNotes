@@ -12,10 +12,6 @@ Networking = _how independent machines talk to each other over a network._ That 
 3. **Latency & regionalization** — the network is **slow**. This is _physics of the network_ — speed of light through fiber is literally a networking property. You can't discuss it anywhere else.
 4. **Fault tolerance** — the network is **unreliable**. Packets drop, cables cut, connections time out.
 
-
-
-
-
 ---
 
 ## The OSI Layers
