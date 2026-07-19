@@ -43,7 +43,7 @@
 - **Interview default: start normalized relational, denormalize specific hot paths only when you spot a read problem.** Don't denormalize upfront without a reason.
 - **NoSQL forces access-pattern-first design:** choose **partition key + sort key** around your queries. Get the query right → fast single-partition lookup; query you didn't design for → full-table scan.
   
-  **NoSQL forces access-pattern-first design**  => Afte
+  **NoSQL forces access-pattern-first design**  => After Dynamo DB if still not clear then do research
 
 **Normalize vs denormalize:**
 
@@ -63,7 +63,7 @@
 ▸ **CRUX**
 
 - Index = skip full-table scan. 10M-row email lookup → milliseconds.
-- **B-tree = default.** Exact lookups **and** range queries (dates A→B). Most RDBMS use it automatically.
+- **B-tree = default.** => because Exact lookups **and** range queries (dates A→B). Most RDBMS use it automatically.
 - **Hash index:** faster exact match, **no range** → rarer.
 - **Specialized:** full-text (search), geospatial (location).
 - **Propose indexes on frequently-queried fields.** Auth by email → index email. Fetch user's orders → index `user_id`. "Events in SF on Dec 25" → **compound index** (city, date).
@@ -85,15 +85,20 @@
 - **Invalidation** (the hardest one)
     
     - **Problem —** after a write, the cached copy is stale until you act on it.
-    - **Fix —** invalidate-on-write (delete/update the copy) · short TTL (accept some staleness) · both. Choose by how fresh the data must be.
+    - **Fix —** 1.  invalidate-on-write (delete/update the copy) ·
+    - 2. short TTL (accept some staleness) · both. Choose by how fresh the data must be.
 - **Cache stampede / thundering herd**
     
     - **Problem —** a popular entry expires → many concurrent requests miss at once → all pile onto the DB → can topple the system.
-    - **Fix —** **lock** (one request regenerates, rest wait) · **early recomputation** (refresh before expiry) · **staggered TTLs** (entries don't all expire together). ▹ WHY staggered helps: shared TTLs expire in lockstep → synchronized misses; jittering expiry spreads regeneration over time.
+    - **Fix —** 1.  **lock** (one request regenerates, rest wait) ·
+    - 2. **early recomputation** (refresh before expiry) · 
+    - 3. **staggered TTLs** (entries don't all expire together). ▹ WHY staggered helps: shared TTLs expire in lockstep → synchronized misses; jittering expiry spreads regeneration over time.
 - **Full cache outage**
     
     - **Problem —** Redis down → every read falls through to the DB → DB overload.
-    - **Fix —** in-process fallback cache · circuit breakers (shed load) · graceful degradation until Redis recovers.
+    - **Fix —** 1. In-process fallback cache 
+    - 2. circuit breakers (shed load)
+    - 3. Graceful degradation until Redis recovers.
 - **Cache tiers (where each lives):** CDN → static assets at edge · in-process → tiny rarely-changing values (feature flags, config) · external Redis → core app data (default).
     
 
