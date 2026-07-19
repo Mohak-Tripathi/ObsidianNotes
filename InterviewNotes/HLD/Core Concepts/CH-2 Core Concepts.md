@@ -42,6 +42,8 @@
 - **NoSQL (DynamoDB/Mongo):** flexible/changing schema, or horizontal scale without complex joins.
 - **Interview default: start normalized relational, denormalize specific hot paths only when you spot a read problem.** Don't denormalize upfront without a reason.
 - **NoSQL forces access-pattern-first design:** choose **partition key + sort key** around your queries. Get the query right → fast single-partition lookup; query you didn't design for → full-table scan.
+  
+  **NoSQL forces access-pattern-first design**  => Afte
 
 **Normalize vs denormalize:**
 
