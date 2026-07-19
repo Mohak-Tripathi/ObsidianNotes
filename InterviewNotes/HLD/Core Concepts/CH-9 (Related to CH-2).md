@@ -188,3 +188,4 @@ That last step is a **consequence** of the availability choice, not a synonym fo
 |Consistency spectrum|**strong** → **causal** → **read-your-own-writes** → **eventual**|
 |Availability = eventual consistency?|**NO.** Availability = _will it respond?_ · Consistency model = _what guarantee?_ AP **leads to** eventual consistency (replicas diverge, then reconcile) — it isn't the same thing|
 |Where it belongs in the interview|**non-functional requirements — minute 5, not minute 35**|
+QR => https://www.hellointerview.com/learn/system-design/core-concepts/cap-theorem/quick-reference

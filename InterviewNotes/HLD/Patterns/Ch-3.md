@@ -384,3 +384,6 @@ else                       { /* 0 rows → someone holds a live hold → "seat t
 |Hot resource / celebrity|scaling all fails (same row, writes); **change the problem** or **queue-based serialization** (1 worker, ⚠ throughput cap + SPOF) → `02a`, `03e`|
 |Fintech home|money in **one DB** → conditional write / OCC / pessimistic **here**; spans services → **`03g`**|
 |Interview trigger|flag during **NFR** when strong consistency required; name the tool per scenario|
+
+
+QR => https://www.hellointerview.com/learn/system-design/patterns/dealing-with-contention/quick-reference

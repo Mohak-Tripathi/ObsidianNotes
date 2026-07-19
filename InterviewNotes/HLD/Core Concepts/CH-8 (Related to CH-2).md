@@ -193,3 +193,4 @@ There is no "group of three" and no dedicated replica machine. There are **10 ov
 |DynamoDB vs Cassandra|**same 3x storage.** Difference = **write path**: leader-only (election on failure, easier consistency) vs **any replica** (no election, conflict resolution needed)|
 |Redis Cluster|⚠ **not** consistent hashing — **fixed hash slots** (`CRC16 mod 16384`)|
 |Interview default|**name-drop only.** Go deep only for distributed cache/DB/message-broker prompts|
+qr => https://www.hellointerview.com/learn/system-design/core-concepts/consistent-hashing/quick-reference

@@ -223,3 +223,6 @@ Trigger it during **capacity planning** when you hit one of these:
 |Constantly needing distributed txns|wrong shard key or wrong shard boundaries|
 |DB mechanics|Cassandra = consistent hashing · DynamoDB = hashed partition key · MongoDB = range chunks + balancer|
 |When NOT to shard|**before you've proven a single DB can't cope** — the #1 mistake|
+
+
+QR => https://www.hellointerview.com/learn/system-design/core-concepts/sharding/quick-reference

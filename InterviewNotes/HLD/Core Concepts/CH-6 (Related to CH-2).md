@@ -193,3 +193,4 @@
 |Which eviction?|LRU default · LFU for steady-popular · TTL for must-refresh · FIFO rarely|
 |When to introduce caching|after naming a **quantified** bottleneck (read-heavy / expensive query / DB CPU / latency)|
 |Don't cache when|well-indexed DB already suffices|
+qr => https://www.hellointerview.com/learn/system-design/core-concepts/caching/quick-reference

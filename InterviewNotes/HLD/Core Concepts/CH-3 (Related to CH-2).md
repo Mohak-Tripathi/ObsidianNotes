@@ -341,3 +341,4 @@ Networking = _how independent machines talk to each other over a network._ That 
 |Retry storms|exponential backoff + jitter|
 |Dependency-down cascade / thundering herd|circuit breaker|
 |Don't-trust-client identity|derive from auth token, validate server-side|
+QR => https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials/quick-reference

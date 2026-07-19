@@ -238,3 +238,4 @@ message Event { string id = 1; string name = 2; int64 date = 3; Venue venue = 4;
 |Different user powers|RBAC (roles → permissions)|
 |Abuse protection|rate limit → 429|
 |Meta|≤5 min, don't over-invest, REST + move on|
+QR => https://www.hellointerview.com/learn/system-design/core-concepts/api-design/quick-reference

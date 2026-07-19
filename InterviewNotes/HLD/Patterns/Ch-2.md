@@ -516,3 +516,4 @@ That `ws` object **is the socket** — a handle to that one client's open connec
 |Celebrity fan-out|cache once + hierarchical distribution → **`03e`**, `02a`|
 |Ordering (product)|funnel through **one partition**, stamp total order; vector clocks = deep-infra|
 |When NOT to use|polling suffices → do it, skip both hops|
+QR => https://www.hellointerview.com/learn/system-design/patterns/realtime-updates/quick-reference
