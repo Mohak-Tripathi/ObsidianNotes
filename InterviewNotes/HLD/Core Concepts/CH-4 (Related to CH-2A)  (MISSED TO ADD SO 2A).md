@@ -144,3 +144,4 @@ likes:    user_id (FK → users.id), post_id (FK → posts.id)
 |Outgrew one DB|shard by primary access pattern|
 |"Recent" sharding|⚠ time-range = hot shard; only for archival|
 |Whiteboard DB steps|type → columns → keys → indexes → denorm? → shard?|
+QR => https://www.hellointerview.com/learn/system-design/core-concepts/data-modeling/quick-reference
