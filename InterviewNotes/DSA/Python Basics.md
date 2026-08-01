@@ -543,3 +543,488 @@ Whenever a problem asks to construct a palindrome:
 - Mirror the left half to obtain the right half.
 
 This avoids complicated two-pointer or front/back filling logic.
+
+
+
+
+
+
+----------------------
+
+
+---
+
+# Python Learnings - When to Use `enumerate()`
+
+One of the most common mistakes while learning Python is using `enumerate()` when it isn't needed.
+
+## What does `enumerate()` return?
+
+`enumerate(iterable)` returns:
+
+```python
+(index, element)
+```
+
+Example:
+
+```python
+arr = ['a', 'b', 'c']
+
+for x in enumerate(arr):
+    print(x)
+```
+
+Output:
+
+```python
+(0, 'a')
+(1, 'b')
+(2, 'c')
+```
+
+---
+
+## Case 1: I only need the values (Most Common)
+
+Do **NOT** use `enumerate()`.
+
+```python
+arr = ['a', 'b', 'c']
+
+for ch in arr:
+    print(ch)
+```
+
+Output:
+
+```python
+a
+b
+c
+```
+
+---
+
+## Case 2: I need both key and value from a dictionary
+
+Use `.items()`.
+
+```python
+freq = {
+    'a': 3,
+    'b': 2
+}
+
+for ch, count in freq.items():
+    print(ch, count)
+```
+
+Output:
+
+```python
+a 3
+b 2
+```
+
+---
+
+## Case 3: I sorted dictionary items
+
+```python
+sorted_freq = sorted(freq.items())
+```
+
+Now every element is a tuple:
+
+```python
+('a', 3)
+('b', 2)
+```
+
+So iterate like:
+
+```python
+for ch, count in sorted_freq:
+```
+
+NOT
+
+```python
+for ch in sorted_freq:
+```
+
+because each element contains **two values**.
+
+---
+
+## Case 4: I need the index as well
+
+Only now use `enumerate()`.
+
+```python
+for i, (ch, count) in enumerate(sorted_freq):
+```
+
+Here:
+
+```python
+i
+```
+
+is the position in the list.
+
+Example:
+
+```python
+sorted_freq = [
+    ('a',3),
+    ('b',2),
+    ('c',1)
+]
+```
+
+Iteration:
+
+```python
+i = 0
+ch = 'a'
+count = 3
+
+i = 1
+ch = 'b'
+count = 2
+
+i = 2
+ch = 'c'
+count = 1
+```
+
+This is useful when the index itself is part of the solution.
+
+Examples:
+
+- LeetCode 3016 (keyboard problem)
+- Ranking problems
+- Cost depends on position
+- Every kth element
+
+---
+
+## Common Mistake
+
+I wrote:
+
+```python
+for key, val in enumerate(sorted_freq):
+```
+
+Thinking:
+
+```python
+key = character
+val = frequency
+```
+
+Wrong.
+
+Actually:
+
+```python
+key = index
+
+val = (character, frequency)
+```
+
+Example:
+
+```python
+enumerate(sorted_freq)
+
+↓
+
+(0, ('a',3))
+(1, ('b',2))
+```
+
+So:
+
+```python
+key = 0
+val = ('a',3)
+```
+
+which is not what I wanted.
+
+---
+
+## Rule of Thumb
+
+Need only values?
+
+```python
+for x in arr:
+```
+
+Need dictionary key & value?
+
+```python
+for key, value in dict.items():
+```
+
+Need tuple values after sorting?
+
+```python
+for key, value in sorted(dict.items()):
+```
+
+Need index + value?
+
+```python
+for i, value in enumerate(arr):
+```
+
+Need index + tuple?
+
+```python
+for i, (key, value) in enumerate(sorted(dict.items())):
+```
+
+---
+
+## Interview Tip
+
+Before writing a `for` loop, ask yourself:
+
+> **Do I actually need the index?**
+
+- **No** → Don't use `enumerate()`.
+- **Yes** → Use `enumerate()`.
+
+This simple question prevents one of the most common Python mistakes.
+
+
+
+
+-------------------------
+
+---
+
+# Python Learnings - `append()` vs `extend()`
+
+Lists in Python provide two common ways to add elements:
+
+- `append()`
+- `extend()`
+
+Understanding the difference is very important.
+
+---
+
+## 1. append()
+
+`append()` adds **one object** to the end of the list.
+
+Example:
+
+```python
+arr = ['a', 'b']
+
+arr.append('c')
+```
+
+Output:
+
+```python
+['a', 'b', 'c']
+```
+
+---
+
+Appending another list:
+
+```python
+arr = ['a', 'b']
+
+arr.append(['c', 'd'])
+```
+
+Output:
+
+```python
+['a', 'b', ['c', 'd']]
+```
+
+Notice:
+
+The entire list is inserted as **one element**.
+
+---
+
+## 2. extend()
+
+`extend()` adds **each element of an iterable** individually.
+
+Example:
+
+```python
+arr = ['a', 'b']
+
+arr.extend(['c', 'd'])
+```
+
+Output:
+
+```python
+['a', 'b', 'c', 'd']
+```
+
+Instead of inserting one list, it inserts every element inside that list.
+
+---
+
+## Why did we use `extend()` in LeetCode 3517?
+
+We had:
+
+```python
+left.extend([ch] * (count // 2))
+```
+
+Suppose:
+
+```python
+ch = 'a'
+count = 6
+```
+
+Then
+
+```python
+[ch] * (count // 2)
+```
+
+becomes
+
+```python
+['a', 'a', 'a']
+```
+
+Then
+
+```python
+left.extend(['a', 'a', 'a'])
+```
+
+results in
+
+```python
+['a', 'a', 'a']
+```
+
+which is exactly what we want.
+
+---
+
+## What if we used append()?
+
+```python
+left.append(['a', 'a', 'a'])
+```
+
+Result:
+
+```python
+[['a', 'a', 'a']]
+```
+
+Now the list contains another list.
+
+Then
+
+```python
+"".join(left)
+```
+
+would fail because `join()` expects a list of strings, not a list containing another list.
+
+---
+
+## Multiplying a List
+
+A very useful Python feature:
+
+```python
+['a'] * 3
+```
+
+Output:
+
+```python
+['a', 'a', 'a']
+```
+
+Similarly,
+
+```python
+[5] * 4
+```
+
+Output:
+
+```python
+[5, 5, 5, 5]
+```
+
+This is commonly used when repeating the same element multiple times.
+
+---
+
+## Rule of Thumb
+
+Need to add **one element**?
+
+```python
+arr.append(x)
+```
+
+Need to add **multiple elements from another iterable**?
+
+```python
+arr.extend(iterable)
+```
+
+---
+
+## JavaScript ↔ Python Mapping
+
+| JavaScript | Python |
+|------------|--------|
+| `arr.push(x)` | `arr.append(x)` |
+| `arr.push(...anotherArray)` | `arr.extend(anotherArray)` |
+| `[...arr1, ...arr2]` | `arr1.extend(arr2)` |
+
+---
+
+## Interview Tip
+
+Ask yourself:
+
+> **Am I adding one object or many objects?**
+
+- One object → `append()`
+- Many elements → `extend()`
+
+Remember:
+
+```python
+append()
+```
+
+adds **1 object**.
+
+```python
+extend()
+```
+
+adds **N elements**.
