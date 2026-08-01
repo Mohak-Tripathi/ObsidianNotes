@@ -1028,3 +1028,425 @@ extend()
 ```
 
 adds **N elements**.
+
+
+
+
+---------------------
+
+
+
+
+Absolutely. Here's a **Python HashMap (dictionary) crash course** focused on DSA and interviews.
+
+---
+
+# Python HashMap (Dictionary) Crash Course
+
+## 1. Create
+
+```python
+mp = {}
+```
+
+or
+
+```python
+mp = dict()
+```
+
+---
+
+## 2. Insert / Update
+
+No `add()` or `set()`.
+
+Simply use:
+
+```python
+mp[key] = value
+```
+
+Example
+
+```python
+mp["apple"] = 5
+mp["banana"] = 10
+```
+
+Result
+
+```python
+{
+    "apple": 5,
+    "banana": 10
+}
+```
+
+If the key already exists,
+
+```python
+mp["apple"] = 20
+```
+
+updates it.
+
+---
+
+## 3. Access
+
+```python
+value = mp[key]
+```
+
+Example
+
+```python
+print(mp["apple"])
+```
+
+Output
+
+```text
+20
+```
+
+⚠️ If the key doesn't exist, Python raises a `KeyError`.
+
+---
+
+## 4. Safe Access (`get()`)
+
+Instead of
+
+```python
+mp[key]
+```
+
+use
+
+```python
+mp.get(key)
+```
+
+If absent
+
+```python
+mp.get(key)
+```
+
+returns
+
+```python
+None
+```
+
+Or provide a default
+
+```python
+mp.get(key, 0)
+```
+
+Example
+
+```python
+count = mp.get("orange", 0)
+```
+
+Output
+
+```text
+0
+```
+
+---
+
+## 5. Frequency Counting ⭐ (Most Important)
+
+Instead of
+
+```python
+if x in mp:
+    mp[x] += 1
+else:
+    mp[x] = 1
+```
+
+just write
+
+```python
+mp[x] = mp.get(x, 0) + 1
+```
+
+Example
+
+```python
+nums = [2,2,3,2,5]
+
+mp = {}
+
+for x in nums:
+    mp[x] = mp.get(x, 0) + 1
+```
+
+Result
+
+```python
+{
+    2:3,
+    3:1,
+    5:1
+}
+```
+
+This is probably the single most common hashmap pattern in interviews.
+
+---
+
+# Nested HashMap
+
+Create
+
+```python
+players = {}
+```
+
+Suppose
+
+```python
+player = 0
+color = 2
+```
+
+First make sure the player exists.
+
+```python
+if player not in players:
+    players[player] = {}
+```
+
+Now update the color frequency.
+
+```python
+players[player][color] = players[player].get(color, 0) + 1
+```
+
+Done.
+
+No loops.
+
+---
+
+Example
+
+After processing
+
+```text
+(0,2)
+(0,2)
+(0,5)
+(1,3)
+```
+
+Dictionary becomes
+
+```python
+{
+    0:{
+        2:2,
+        5:1
+    },
+    1:{
+        3:1
+    }
+}
+```
+
+---
+
+## Check if key exists
+
+```python
+if key in mp:
+```
+
+or
+
+```python
+if key not in mp:
+```
+
+Example
+
+```python
+if "apple" in mp:
+    print("Found")
+```
+
+---
+
+## Iterate
+
+Keys
+
+```python
+for key in mp:
+    print(key)
+```
+
+---
+
+Values
+
+```python
+for value in mp.values():
+    print(value)
+```
+
+---
+
+Key-Value
+
+```python
+for key, value in mp.items():
+    print(key, value)
+```
+
+Example
+
+```python
+{
+    2:3,
+    5:1
+}
+```
+
+prints
+
+```text
+2 3
+5 1
+```
+
+---
+
+## Delete
+
+```python
+del mp[key]
+```
+
+---
+
+# DSA Patterns to Remember
+
+### Frequency Map
+
+```python
+mp[x] = mp.get(x, 0) + 1
+```
+
+---
+
+### Presence Check
+
+```python
+if x in mp:
+```
+
+---
+
+### Nested HashMap
+
+```python
+if player not in players:
+    players[player] = {}
+
+players[player][color] = players[player].get(color, 0) + 1
+```
+
+---
+
+## Bonus: `defaultdict` (Very Useful)
+
+Instead of checking whether a key exists every time, Python provides `defaultdict`.
+
+```python
+from collections import defaultdict
+
+mp = defaultdict(int)
+```
+
+Now
+
+```python
+mp[5] += 1
+```
+
+works even if `5` wasn't present before.
+
+For a nested hashmap:
+
+```python
+from collections import defaultdict
+
+players = defaultdict(dict)
+
+players[player][color] = players[player].get(color, 0) + 1
+```
+
+Or even more elegantly:
+
+```python
+from collections import defaultdict
+
+players = defaultdict(lambda: defaultdict(int))
+
+players[player][color] += 1
+```
+
+This removes the need for existence checks entirely.
+
+---
+
+## Interview Cheat Sheet (copy into `notes.md`)
+
+```python
+# Create
+mp = {}
+
+# Insert / Update
+mp[key] = value
+
+# Get safely
+mp.get(key, default)
+
+# Frequency counting
+mp[x] = mp.get(x, 0) + 1
+
+# Exists?
+if key in mp:
+if key not in mp:
+
+# Iterate
+for k in mp:
+for v in mp.values():
+for k, v in mp.items():
+
+# Nested HashMap
+if p not in players:
+    players[p] = {}
+
+players[p][c] = players[p].get(c, 0) + 1
+
+# defaultdict
+from collections import defaultdict
+
+freq = defaultdict(int)
+freq[x] += 1
+
+nested = defaultdict(lambda: defaultdict(int))
+nested[p][c] += 1
+```
+
+For LeetCode and interviews, if you become comfortable with just these patterns, you'll be able to solve the vast majority of hashmap-based problems.
