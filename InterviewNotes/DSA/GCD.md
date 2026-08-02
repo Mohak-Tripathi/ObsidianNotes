@@ -481,3 +481,492 @@ O(n² × log(max(nums)))
 ---
 
 This is a classic beginner mistake, and it's actually a good sign—you focused on implementing the GCD correctly. The key takeaway is to **read the wording carefully**: when a problem says "choose any pair," your default thought should be, _"I probably need two nested loops unless there's an optimization."_
+
+
+
+
+This is actually one of the best questions you could ask. Most people memorize the Euclidean algorithm:
+
+```text
+gcd(a, b) = gcd(b, a % b)
+```
+
+but don't know **why** it works. Once you understand the intuition, you'll never forget it.
+
+---
+
+# Part 1: Why does `gcd(a, b) = gcd(b, a % b)`?
+
+Let's take an example.
+
+Find:
+
+```text
+GCD(48, 18)
+```
+
+We know:
+
+```text
+48 = 18 × 2 + 12
+```
+
+So,
+
+```text
+48 = 36 + 12
+```
+
+Now think like this:
+
+Suppose a number `d` divides both 48 and 18.
+
+For example:
+
+```text
+d = 6
+```
+
+Since 6 divides 48,
+
+```text
+48 = 6 × 8
+```
+
+Since 6 divides 18,
+
+```text
+18 = 6 × 3
+```
+
+Now look at
+
+```text
+48 - (18 × 2)
+
+= 48 - 36
+
+= 12
+```
+
+If 6 divides **48** and also divides **36**, then it **must** divide their difference (12).
+
+This is the key mathematical property:
+
+> If a number divides two numbers, it also divides their difference.
+
+So every common divisor of **48 and 18** is also a divisor of **12**.
+
+That means
+
+```text
+Common divisors of (48,18)
+
+=
+
+Common divisors of (18,12)
+```
+
+Therefore,
+
+```text
+GCD(48,18)
+
+=
+
+GCD(18,12)
+```
+
+---
+
+Now repeat.
+
+```text
+18 = 12 × 1 + 6
+```
+
+Again,
+
+```text
+18 - 12 = 6
+```
+
+So
+
+```text
+GCD(18,12)
+
+=
+
+GCD(12,6)
+```
+
+Again,
+
+```text
+12 = 6 × 2 + 0
+```
+
+Remainder becomes zero.
+
+Therefore
+
+```text
+GCD = 6
+```
+
+---
+
+## General Proof
+
+Suppose
+
+```text
+a = b × q + r
+```
+
+where
+
+```text
+r = a % b
+```
+
+If some number `d` divides both `a` and `b`, then it also divides
+
+```text
+a - b × q
+```
+
+But
+
+```text
+a - b × q = r
+```
+
+So
+
+```text
+d divides r
+```
+
+Hence,
+
+```text
+Common divisors of (a,b)
+
+=
+
+Common divisors of (b,r)
+```
+
+Therefore,
+
+```text
+gcd(a,b)
+
+=
+
+gcd(b,a%b)
+```
+
+This is the entire Euclidean algorithm.
+
+---
+
+# Intuition
+
+Think of it this way.
+
+Suppose I ask:
+
+> What is common between 48 and 18?
+
+Instead of keeping the large number (48), we remove as many complete groups of 18 as possible.
+
+```text
+48
+
+↓
+
+18 + 18 + 12
+```
+
+Those two complete 18s don't tell us anything new because 18 already contains all its factors.
+
+The only "new" information left is
+
+```text
+12
+```
+
+So instead of checking
+
+```text
+48 and 18
+```
+
+we only need to check
+
+```text
+18 and 12
+```
+
+The problem becomes smaller while the answer stays the same.
+
+---
+
+# Part 2: Why is the time complexity `O(log(min(a, b)))`?
+
+The simple answer is:
+
+**The numbers shrink very quickly.**
+
+Let's see.
+
+Suppose
+
+```text
+a = 1000
+
+b = 600
+```
+
+Next step
+
+```text
+1000 % 600 = 400
+```
+
+Now
+
+```text
+(600,400)
+```
+
+Next
+
+```text
+600 % 400 = 200
+```
+
+Now
+
+```text
+(400,200)
+```
+
+Next
+
+```text
+400 % 200 = 0
+```
+
+Finished.
+
+Only **3 iterations**.
+
+---
+
+Let's try bigger numbers.
+
+```text
+1,000,000
+
+and
+
+1000
+```
+
+First step
+
+```text
+1000000 % 1000
+
+=
+
+0
+```
+
+Finished in **one step**.
+
+---
+
+## Why logarithm?
+
+The beautiful fact (proved mathematically) is:
+
+In every **one or two iterations**, the smaller number becomes **at least half**.
+
+Imagine repeatedly cutting a number in half.
+
+```text
+100
+
+↓
+
+50
+
+↓
+
+25
+
+↓
+
+12
+
+↓
+
+6
+
+↓
+
+3
+
+↓
+
+1
+```
+
+How many cuts?
+
+Not 100.
+
+Only
+
+```text
+log₂(100)
+
+≈
+
+7
+```
+
+That's exactly what logarithms measure.
+
+Every time you halve something, you're making logarithmic progress.
+
+The Euclidean algorithm behaves similarly.
+
+---
+
+## Worst Case
+
+The slowest possible inputs are consecutive Fibonacci numbers.
+
+Example
+
+```text
+55,34
+
+↓
+
+34,21
+
+↓
+
+21,13
+
+↓
+
+13,8
+
+↓
+
+8,5
+
+↓
+
+5,3
+
+↓
+
+3,2
+
+↓
+
+2,1
+
+↓
+
+1,0
+```
+
+Even here, the number of steps grows only logarithmically.
+
+That's why we say:
+
+```text
+Time = O(log(min(a,b)))
+```
+
+---
+
+# Revision Notes
+
+```text
+Euclidean Algorithm
+
+Observation:
+
+If d divides both a and b,
+
+then d also divides
+
+a − b×q
+
+where
+
+a = b×q + r
+
+Therefore,
+
+a − b×q = r
+
+So,
+
+Common divisors of (a,b)
+
+=
+
+Common divisors of (b,r)
+
+Hence,
+
+gcd(a,b)
+
+=
+
+gcd(b,a%b)
+```
+
+**Time Complexity**
+
+```text
+Each iteration reduces the problem size significantly.
+
+Within one or two iterations,
+the smaller number becomes at least half.
+
+Number of halvings needed to reach 1
+
+=
+
+log₂(min(a,b))
+
+Therefore,
+
+Time Complexity = O(log(min(a,b)))
+
+Space:
+Recursive → O(log n)
+Iterative → O(1)
+```
+
+A practical interview tip is to remember this mental model:
+
+- **Binary Search** is `O(log n)` because it halves the **search space**.
+    
+- **Euclidean Algorithm** is `O(log n)` because it rapidly shrinks the **numbers themselves**.
+    
+
+Different reason, same logarithmic growth. This analogy makes it much easier to remember why both algorithms are so fast.
