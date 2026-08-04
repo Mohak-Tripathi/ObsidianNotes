@@ -33,12 +33,12 @@ This is the foundation of Heap interviews.
 
 # Pattern 2 — Merge Multiple Sorted Structures
 
-|Order|LeetCode|Problem|
-|---|--:|---|
-|1|**23**|Merge K Sorted Lists|
-|2|**378**|Kth Smallest Element in a Sorted Matrix|
-|3|**632**|Smallest Range Covering Elements from K Lists|
-|4|**373**|Find K Pairs with Smallest Sums|
+| Order | LeetCode | Problem                                                                                  |
+| ----- | -------: | ---------------------------------------------------------------------------------------- |
+| 1     |   **23** | Merge K Sorted Lists                                                                     |
+| 2     |  **378** | Kth Smallest Element in a Sorted Matrix                                                  |
+| 3     |  **632** | Smallest Range Covering Elements from K Lists  (HARDEST PROBLEM TILL NOW. Need revision) |
+| 4     |  **373** | Find K Pairs with Smallest Sums                                                          |
 
 ### Concepts
 
