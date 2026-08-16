@@ -1844,3 +1844,216 @@ Since you're coming from a Java background, don't try to translate Java's `HashM
     
 
 These five patterns will cover the vast majority of hashmap questions you'll encounter on LeetCode and in coding interviews.
+
+
+
+
+================================
+
+
+Yes — there are **two different Python things here**, and this is confusing because both can implement queue-like behavior.
+
+### The important distinction
+
+||`collections.deque`|`queue.Queue`|
+|---|---|---|
+|Import|`from collections import deque`|`from queue import Queue`|
+|Main purpose|General-purpose fast double-ended queue|Thread-safe queue for producer/consumer|
+|Add|`.append()`|`.put()`|
+|Remove left|`.popleft()`|`.get()`|
+|Remove right|`.pop()`|❌|
+|Check empty|`not q` / `len(q) == 0`|`.empty()`|
+|Typical DSA use|**✅ Yes**|Usually **❌ No**|
+|Thread-safe|No|**Yes**|
+
+## For DSA: use `deque`
+
+When you're solving LeetCode / Striver / implementing stacks and queues, **prefer `collections.deque`**.
+
+```python
+from collections import deque
+
+q = deque()
+```
+
+Then:
+
+```python
+q.append(10)       # add to right
+q.append(20)
+
+q.popleft()         # remove from left
+q.pop()             # remove from right
+```
+
+So your code:
+
+```python
+self.q = deque()
+self.q.append(x)
+self.q.popleft()
+```
+
+is the **normal Python DSA approach**.
+
+---
+
+## Then why does `queue.Queue` exist?
+
+`queue.Queue` is primarily designed for **multi-threaded programs**.
+
+Imagine:
+
+```text
+Producer thread                 Consumer thread
+      │                                │
+      │ put(item)                      │
+      └──────────> Queue ──────────────┤
+                                      get()
+```
+
+One thread produces work and another consumes it.
+
+`Queue` provides synchronization mechanisms so multiple threads can safely interact with the queue.
+
+That's why its API is:
+
+```python
+q.put(x)
+q.get()
+```
+
+rather than:
+
+```python
+q.append(x)
+q.popleft()
+```
+
+You generally **don't want `queue.Queue` for a normal LeetCode queue implementation**.
+
+---
+
+# So remember this
+
+### `deque` = data structure
+
+Think:
+
+> "I need a fast queue/deque."
+
+```python
+from collections import deque
+
+q = deque()
+```
+
+Operations:
+
+```python
+q.append(x)
+q.popleft()
+q.appendleft(x)
+q.pop()
+```
+
+All of these are **O(1)**.
+
+---
+
+### `Queue` = concurrency tool
+
+Think:
+
+> "Multiple threads need to safely communicate through a queue."
+
+```python
+from queue import Queue
+
+q = Queue()
+
+q.put(x)
+q.get()
+```
+
+You don't normally need this for DSA problems.
+
+---
+
+## One more important thing about your two Stack implementations
+
+Your first solution:
+
+```python
+self.q.append(x)
+```
+
+then during `pop()`:
+
+```python
+for i in range(curr_length - 1):
+    self.q.append(self.q.popleft())
+```
+
+is perfectly fine.
+
+You're using the queue in its natural form:
+
+```text
+[1, 2, 3, 4]
+ ↑
+front
+```
+
+To make `4` behave like the stack top, you rotate:
+
+```text
+[1, 2, 3, 4]
+ ↓
+[2, 3, 4, 1]
+ ↓
+[3, 4, 1, 2]
+ ↓
+[4, 1, 2, 3]
+```
+
+Then:
+
+```python
+popleft()
+```
+
+gives you `4`.
+
+That's **O(n) push?** No — in your implementation it's **O(n) pop**, while push is **O(1)**.
+
+The second implementation reverses that tradeoff:
+
+```python
+def push(self, x):
+    ...
+    for _ in range(s):
+        self.q.put(self.q.get())
+```
+
+So there, **push is O(n)** and pop is O(1).
+
+Both are valid approaches.
+
+### For your Python learning, I'd use:
+
+```python
+from collections import deque
+```
+
+and learn these four operations really well:
+
+```python
+q.append(x)       # right
+q.appendleft(x)   # left
+
+q.pop()           # right
+q.popleft()       # left
+```
+
+That's the **Python-native tool you'll encounter most often in DSA**.
