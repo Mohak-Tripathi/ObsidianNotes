@@ -3270,3 +3270,223 @@ Although one Heapify Down operation has a worst-case complexity of O(log n), mos
 - Only a few nodes perform expensive work.
 - The overall Build Heap complexity is O(n).
 =====================
+
+Your confusion is completely valid! A heap and a priority queue look the same because we usually use a heap to implement a priority queue. But they are two different concepts.
+
+Let's understand with a simple example.
+
+## 1. Think of a Priority Queue as a rule
+
+Imagine a hospital emergency room.
+
+Patients arrive in this order:
+
+- Patient A: Low priority
+    
+- Patient B: High priority
+    
+- Patient C: Medium priority
+    
+
+The hospital treats Patient B first, even though Patient A arrived earlier.
+
+This behavior is the idea behind a Priority Queue: always serve the element with the highest priority (or lowest value, depending on the type).
+
+It defines what should happen, not how to implement it.
+
+## 2. So, what is a Heap?
+
+A Heap is a specific data structure that helps us implement this behavior efficiently.
+
+For example, a min-heap keeps the smallest element at the top, allowing us to retrieve it in \(O(1)\) time.
+
+We could implement a priority queue using:
+
+- A heap
+    
+- An array
+    
+- A balanced BST
+    
+
+They all can provide priority-queue behavior, but with different performance.
+
+## 3. What does ADT mean?
+
+ADT stands for Abstract Data Type.
+
+Don't let the fancy name confuse you. It simply means:
+
+> What operations are available and what those operations do, without specifying how they are implemented.
+
+For example, a Priority Queue says:
+
+- Insert an element.
+    
+- Get the highest-priority element.
+    
+- Remove the highest-priority element.
+    
+
+It doesn't dictate whether you use a heap, array, or BST internally.
+
+## Remember this distinction
+
+## Priority Queue
+
+The behavior we want (ADT)
+
+Can be implemented using
+
+Heap
+
+Efficient
+
+Array
+
+Possible
+
+BST
+
+Possible
+
+The one-line takeaway: A priority queue is what you want to achieve; a heap is one way to achieve it efficiently.
+
+In coding interviews, when a problem says "use a priority queue," using Python's `heapq` is often the natural choice because it implements a heap.
+
+================================
+
+# Heap Handbook – Session 3.10
+## Topic: Heap Sort
+
+---
+
+# Objective
+
+Use Heap operations to sort an array in ascending order.
+
+Heap Sort is an application of the Heap data structure, not a new data structure.
+
+---
+
+# Core Idea
+
+1. Build a Max Heap.
+2. The root is the largest element.
+3. Swap the root with the last element.
+4. Reduce the heap size by one.
+5. Heapify Down from the root.
+6. Repeat until one element remains.
+
+---
+
+# Algorithm
+
+```
+Build Heap
+
+↓
+
+Swap root with last
+
+↓
+
+Reduce heap size
+
+↓
+
+Heapify Down
+
+↓
+
+Repeat
+```
+
+---
+
+# Python Implementation
+
+```python
+def heap_sort(arr):
+    n = len(arr)
+
+    build_heap(arr)
+
+    for end in range(n - 1, 0, -1):
+        arr[0], arr[end] = arr[end], arr[0]
+        heapify_down(arr, 0, end)
+
+    return arr
+```
+
+---
+
+# Complexity
+
+| Step | Complexity |
+|------|------------|
+| Build Heap | O(n) |
+| Heapify Down (repeated) | O(n log n) |
+| Total | O(n log n) |
+
+---
+
+# Space Complexity
+
+```
+O(1)
+```
+
+Heap Sort is an **in-place** sorting algorithm.
+
+---
+
+# Properties
+
+- In-place ✅
+- Comparison-based ✅
+- Not Stable ❌
+
+---
+
+# Common Interview Mistakes
+
+### Mistake 1
+
+Thinking Heap Sort requires another array.
+
+Correct:
+
+Heap Sort is in-place.
+
+---
+
+### Mistake 2
+
+Thinking Build Heap dominates the complexity.
+
+Correct:
+
+Repeated Heapify Down operations dominate.
+
+---
+
+### Mistake 3
+
+Confusing Heap Sort with repeatedly inserting into a Heap.
+
+Correct:
+
+Heap Sort first builds the Heap in O(n), then repeatedly extracts the maximum.
+
+---
+
+# Key Takeaways
+
+- Heap Sort is built on top of Heap operations.
+- Build Heap is O(n).
+- Sorting phase is O(n log n).
+- Total complexity is O(n log n).
+- Space complexity is O(1).
+
+=========================
