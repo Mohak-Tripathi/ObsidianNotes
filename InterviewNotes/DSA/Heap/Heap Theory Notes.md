@@ -330,3 +330,41 @@ It is the standard implementation of a **Priority Queue**.
 - Top-K problems are naturally solved using repeated heap extraction.
 
 ---
+# Next Session
+
+We will derive:
+
+1. Why a Heap **must** be a Complete Binary Tree.
+2. Why pointers are unnecessary.
+3. Why Heap is stored in an array.
+4. Parent/Child index formulas from first principles.
+5. Heapify intuition.
+
+# The Real Reason Complete Binary Trees Were Chosen
+
+Many people think:
+
+> "Heap uses a Complete Binary Tree because that's the definition."
+
+It's actually the opposite.
+
+Engineers wanted:
+
+- Small height (`O(log n)`). BST also do not gurantee o(H) height. It could be skewed. So height issue and global ordering is the issue in BST.
+- No expensive balancing logic.
+- Efficient array representation.
+- Simple insertions and deletions.
+
+The **Complete Binary Tree** is the simplest shape that satisfies all of those goals.
+
+# First-Principles Summary
+
+When designing a priority queue, engineers wanted:
+
+- Fast access to the highest-priority element.
+- Fast insertion and deletion.
+- A tree that never becomes too tall.
+- No complicated balancing.
+- A layout that can be stored efficiently in an array.
+
+A **Complete Binary Tree** is the simplest shape that satisfies all these requirements.
