@@ -1898,4 +1898,158 @@ Only one path from the inserted node to the root can violate the Heap Property.
 - This observation directly leads to the Heapify Up algorithm.
 
 ===========================
+# Heap Handbook – Session 3.2
+## Topic: Insert Operation (Before Heapify Up)
+
+---
+
+# Objective
+
+Understand how insertion works before learning Heapify Up.
+
+Insertion and Heapify Up are two separate ideas.
+
+Insertion places the element.
+
+Heapify Up repairs the Heap Property if necessary.
+
+---
+
+# Responsibilities During Insertion
+
+Every insertion has two goals:
+
+1. Preserve the Shape Property.
+2. Restore the Heap Property (if required).
+
+The Shape Property always comes first.
+
+---
+
+# Where Is the New Element Inserted?
+
+Always at the **next available position** in level order.
+
+Array representation:
+
+```
+Append to the end of the array.
+```
+
+This guarantees that the Complete Binary Tree structure is preserved.
+
+---
+
+# Shape Property
+
+Insertion never breaks the Shape Property.
+
+Reason:
+
+Appending naturally fills the tree from left to right.
+
+---
+
+# Heap Property
+
+After insertion:
+
+The Heap Property may or may not be violated.
+
+Example:
+
+```
+Parent = 80
+
+Child = 95
+```
+
+Violation:
+
+```
+80 < 95
+```
+
+---
+
+# Important Observation
+
+Heapify Up is **not always necessary**.
+
+If the parent already dominates the newly inserted node, insertion is complete.
+
+Example:
+
+```
+Parent = 80
+
+Child = 45
+```
+
+Since:
+
+```
+80 > 45
+```
+
+No repair is needed.
+
+---
+
+# Separation of Responsibilities
+
+Insertion:
+
+- Places the element.
+- Preserves the Shape Property.
+
+Heapify Up:
+
+- Repairs the Heap Property only if it was violated.
+
+These are two different operations.
+
+---
+
+# Common Interview Mistakes
+
+### Mistake 1
+
+Trying to insert where the value "belongs."
+
+Correct:
+
+Always insert at the next available position.
+
+---
+
+### Mistake 2
+
+Thinking Heapify Up always runs.
+
+Correct:
+
+Heapify Up runs only if the Heap Property is violated.
+
+---
+
+### Mistake 3
+
+Mixing insertion with Heapify Up.
+
+Correct:
+
+Insertion places the node.
+
+Heapify Up repairs the Heap.
+
+---
+
+# Key Takeaways
+
+- Insert at the next available position.
+- Shape Property is automatically preserved.
+- Heap Property may or may not break.
+- Heapify Up is a repair algorithm, not part of insertion itself.
+===================
 
