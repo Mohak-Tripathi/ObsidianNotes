@@ -461,3 +461,235 @@ In the next lesson we'll prove why a complete binary tree naturally maps to an a
 
 =================
 
+# Heap Handbook – Session 2.2
+## Topic: Why Can a Heap Be Stored in an Array?
+
+---
+
+# Objective
+
+Understand why a Heap is **conceptually a tree** but **implemented using an array**.
+
+This is possible because of the **Complete Binary Tree** property.
+
+---
+
+# Recap
+
+In the previous session we learned that a Heap has two independent properties:
+
+1. **Shape Property**
+   - Must be a Complete Binary Tree.
+
+2. **Heap Property**
+   - Parent ≥ Children (Max Heap)
+   - Parent ≤ Children (Min Heap)
+
+The Shape Property is what makes array implementation possible.
+
+---
+
+# Traditional Tree Implementation
+
+Normally, a binary tree node looks like this:
+
+```java
+class Node {
+    int value;
+    Node left;
+    Node right;
+}
+```
+
+Each node stores:
+
+- Value
+- Pointer to Left Child
+- Pointer to Right Child
+
+This works for any binary tree.
+
+---
+
+# Observation 1
+
+Consider this Complete Binary Tree.
+
+```
+        100
+      /     \
+     90      80
+    /  \    /  \
+   70  60  50  40
+```
+
+Notice:
+
+- Every level is completely filled.
+- There are no gaps.
+- Nodes naturally appear level by level.
+
+---
+
+# Observation 2
+
+Write the nodes level by level.
+
+```
+100
+
+90 80
+
+70 60 50 40
+```
+
+Remove the line breaks.
+
+```
+100 90 80 70 60 50 40
+```
+
+This is simply:
+
+```
+Index : 0   1   2   3   4   5   6
+
+Value :100 90 80 70 60 50 40
+```
+
+Without storing a single pointer.
+
+---
+
+# Why Does This Work?
+
+Because the tree is Complete.
+
+There are **no empty positions** before the last node.
+
+This means every node gets a predictable position in the array.
+
+---
+
+# What If the Tree Were Not Complete?
+
+Example:
+
+```
+        100
+       /    \
+     90      80
+       \       \
+       60       40
+```
+
+Array representation becomes:
+
+```
+100 90 80 ? 60 ? 40
+```
+
+Problems:
+
+- Empty gaps
+- Wasted memory
+- Parent-child relationships become complicated
+
+The elegant array representation breaks.
+
+---
+
+# Engineering Insight
+
+The Complete Binary Tree gives us two benefits:
+
+1. Height remains O(log n).
+2. We can remove left/right pointers completely.
+
+This saves:
+
+- Memory
+- Pointer overhead
+- Cache misses
+
+Arrays are stored contiguously in memory, making Heap operations very cache-friendly.
+
+---
+
+# Logical View vs Physical View
+
+## Logical View (Algorithm)
+
+Think in terms of:
+
+- Parent
+- Left Child
+- Right Child
+
+```
+        90
+      /    \
+    70      60
+```
+
+This is how we reason about Heap algorithms.
+
+---
+
+## Physical View (Memory)
+
+The same Heap is stored as:
+
+```
+[90, 70, 60]
+```
+
+The array is only the storage representation.
+
+The algorithm still thinks in terms of parent-child relationships.
+
+---
+
+# Key Takeaway
+
+Tree = Logical Structure
+
+Array = Physical Storage
+
+We learn Heap as a tree because the algorithm is based on parent-child relationships.
+
+We implement Heap as an array because a Complete Binary Tree has a predictable layout.
+
+---
+
+# What's Next?
+
+Now that every node has a fixed position in the array, the next question is:
+
+> Given an index `i`, how do we find its:
+
+- Left Child
+- Right Child
+- Parent
+
+Instead of memorizing:
+
+- Left = 2i + 1
+- Right = 2i + 2
+- Parent = (i - 1) / 2
+
+we will derive these formulas from first principles.
+
+---
+
+# Interview Takeaways
+
+- Heap is conceptually a tree but physically stored as an array.
+- Array implementation is possible only because Heap is a Complete Binary Tree.
+- Complete trees have no gaps before the last node.
+- Pointer-based implementation is unnecessary.
+- Tree explains the algorithm.
+- Array optimizes memory and performance.
+================
+
+
