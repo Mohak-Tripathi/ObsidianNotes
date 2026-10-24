@@ -2052,4 +2052,246 @@ Heapify Up repairs the Heap.
 - Heap Property may or may not break.
 - Heapify Up is a repair algorithm, not part of insertion itself.
 ===================
+# Heap Handbook – Session 3.3
+## Topic: Heapify Up (Bubble Up / Sift Up)
+
+---
+
+# Objective
+
+Repair the Heap Property after insertion.
+
+Insertion preserves the Shape Property.
+
+Heapify Up restores the Heap Property if it was violated.
+
+---
+
+# Key Observation
+
+After insertion:
+
+Only one path can become invalid.
+
+```
+Inserted Node
+
+↓
+
+Parent
+
+↓
+
+Grandparent
+
+↓
+
+...
+
+↓
+
+Root
+```
+
+No other branches are affected.
+
+---
+
+# Why Compare Only the Parent?
+
+The Heap Property is a **local ordering** rule.
+
+Only the parent-child relationship can be violated.
+
+After every swap:
+
+- The subtree below becomes valid.
+- The only possible remaining violation is with the new parent.
+
+Therefore, we continue moving upward.
+
+---
+
+# When Does Heapify Up Stop?
+
+Stop in either case:
+
+1. The node reaches the root.
+2. The parent already satisfies the Heap Property.
+
+---
+
+# Algorithm
+
+1. Insert the element at the end.
+2. While the parent exists:
+   - Compare with the parent.
+   - If the Heap Property holds, stop.
+   - Otherwise swap.
+3. Repeat.
+
+---
+
+# Python Implementation
+
+```python
+def heapify_up(heap, index):
+    while index > 0:
+        parent = (index - 1) // 2
+
+        if heap[parent] >= heap[index]:
+            break
+
+        heap[parent], heap[index] = heap[index], heap[parent]
+
+        index = parent
+```
+
+Insertion:
+
+```python
+def insert(heap, value):
+    heap.append(value)
+    heapify_up(heap, len(heap) - 1)
+```
+
+---
+
+# Complexity
+
+Heapify Up:
+
+```
+O(log n)
+```
+
+Reason:
+
+The node travels upward through at most one root-to-leaf path.
+
+The height of a Complete Binary Tree is O(log n).
+
+---
+
+# Common Interview Mistakes
+
+### Mistake 1
+
+Comparing with siblings.
+
+Correct:
+
+Only compare with the parent.
+
+---
+
+### Mistake 2
+
+Thinking the whole Heap needs repairing.
+
+Correct:
+
+Only one path may violate the Heap Property.
+
+---
+
+### Mistake 3
+
+Forgetting to update the current index after a swap.
+
+Always move the current node to its new parent position.
+
+---
+
+# Key Takeaways
+
+- Heapify Up is a repair algorithm.
+- It fixes only the Heap Property.
+- It works on a single path.
+- It compares only with the parent.
+- Time Complexity = O(log n).
+==================
+# Heap Handbook – Session 3.4
+## Topic: Peek Operation
+
+---
+
+# Objective
+
+Retrieve the highest-priority element without modifying the Heap.
+
+---
+
+# Why Does Peek Work?
+
+The Heap Property guarantees:
+
+- Max Heap → Root contains the maximum element.
+- Min Heap → Root contains the minimum element.
+
+No searching is required.
+
+---
+
+# Algorithm
+
+1. Return the root.
+2. Do not modify the Heap.
+
+---
+
+# Python Implementation
+
+```python
+def peek(heap):
+    if not heap:
+        return None
+
+    return heap[0]
+```
+
+---
+
+# Complexity
+
+```
+Time  : O(1)
+
+Space : O(1)
+```
+
+Reason:
+
+Only a single array access is performed.
+
+---
+
+# Common Interview Mistakes
+
+### Mistake 1
+
+Thinking Peek and Extract Max are the same.
+
+Correct:
+
+- Peek only reads.
+- Extract Max removes.
+
+---
+
+### Mistake 2
+
+Trying to search the Heap.
+
+Correct:
+
+The maximum (or minimum) is already guaranteed to be at the root.
+
+---
+
+# Key Takeaways
+
+- Peek returns the root.
+- Heap remains unchanged.
+- Time Complexity = O(1).
 
