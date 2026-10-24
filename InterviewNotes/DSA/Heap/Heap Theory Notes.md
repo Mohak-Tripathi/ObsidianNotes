@@ -1739,3 +1739,163 @@ Your core conclusion is right: a nontrivial BST and a Max Heap cannot satisfy th
 
 =====================
 
+
+
+# Heap Handbook – Session 3.1
+## Topic: What Can Break During Insertion?
+
+---
+
+# Objective
+
+Before learning Heap operations, identify exactly what becomes invalid after inserting a new element into a Heap.
+
+Understanding what breaks naturally leads to the repair algorithm.
+
+---
+
+# Initial State
+
+Assume we already have a valid Heap.
+
+Both properties are satisfied:
+
+- Shape Property ✅
+- Heap Property ✅
+
+---
+
+# Where Can a New Element Be Inserted?
+
+A Heap always inserts at the **next available position in level order**.
+
+Equivalent array operation:
+
+```
+Append to the end of the array.
+```
+
+Reason:
+
+This preserves the Complete Binary Tree (Shape Property).
+
+---
+
+# Which Property Breaks?
+
+After insertion:
+
+### Shape Property
+
+Still valid.
+
+Reason:
+
+The new element was inserted at the next available position.
+
+---
+
+### Heap Property
+
+May become invalid.
+
+Example:
+
+```
+Parent = 70
+
+Child = 95
+```
+
+The parent no longer dominates its child.
+
+---
+
+# Most Important Observation
+
+Only **one path** can become invalid.
+
+```
+Inserted Node
+
+↓
+
+Parent
+
+↓
+
+Grandparent
+
+↓
+
+...
+
+↓
+
+Root
+```
+
+No other branches are affected.
+
+Reason:
+
+The Heap was already valid before insertion.
+
+Only the newly inserted element can introduce violations.
+
+---
+
+# Engineering Insight
+
+Since only one root-to-leaf path can violate the Heap Property, we never need to repair the entire tree.
+
+We only repair that single path.
+
+This is the foundation of **Heapify Up**.
+
+---
+
+# Common Interview Mistakes
+
+### Mistake 1
+
+Thinking insertion can happen anywhere.
+
+Correct:
+
+Insertion always happens at the next available position to preserve the Shape Property.
+
+---
+
+### Mistake 2
+
+Thinking both Heap properties break.
+
+Correct:
+
+Only the Heap Property may break.
+
+The Shape Property remains valid.
+
+---
+
+### Mistake 3
+
+Thinking the entire Heap must be repaired.
+
+Correct:
+
+Only one path from the inserted node to the root can violate the Heap Property.
+
+---
+
+# Key Takeaways
+
+- Insert at the next available position.
+- Shape Property never breaks during insertion.
+- Heap Property may break.
+- Only one path needs repair.
+- This observation directly leads to the Heapify Up algorithm.
+
+===========================
+
