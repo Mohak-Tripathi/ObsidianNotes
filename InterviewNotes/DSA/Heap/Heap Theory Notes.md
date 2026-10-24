@@ -2295,3 +2295,290 @@ The maximum (or minimum) is already guaranteed to be at the root.
 - Heap remains unchanged.
 - Time Complexity = O(1).
 
+=================
+# Heap Handbook – Session 3.5
+## Topic: Extract Max (Part 1) – Why Do We Replace the Root with the Last Element?
+
+---
+
+# Objective
+
+Understand **why** the root is replaced by the last element during deletion.
+
+This session focuses on the intuition only.
+
+Heapify Down will be covered in the next session.
+
+---
+
+# Initial Heap
+
+```
+          100
+        /      \
+      90        80
+     /  \      / \
+   70   60    50 40
+```
+
+The root (100) is the maximum element.
+
+Suppose we want to remove it.
+
+This creates an empty position at the root.
+
+---
+
+# First Intuition
+
+A common first thought is:
+
+> Replace the root with the larger child.
+
+Example:
+
+```
+           90
+         /    \
+       ?       80
+      / \      / \
+    70 60    50 40
+```
+
+Problem:
+
+Moving 90 creates a hole in the middle of the tree.
+
+Now another node must move up.
+
+That creates another hole.
+
+The process continues.
+
+The Complete Binary Tree (Shape Property) becomes difficult to maintain.
+
+---
+
+# Better Idea
+
+Instead of moving a node from the middle,
+
+Move the **last element** to the root.
+
+Example:
+
+```
+Move 40 to the root.
+```
+
+Result:
+
+```
+          40
+        /      \
+      90        80
+     /  \      /
+   70   60    50
+```
+
+Notice:
+
+The last node simply disappears.
+
+No hole is created inside the tree.
+
+The Complete Binary Tree remains valid.
+
+---
+
+# Important Observation
+
+We do **not** choose the smallest element.
+
+We do **not** choose the largest child.
+
+We always choose the **last element**, regardless of its value.
+
+Examples:
+
+```
+Last element = 40
+```
+
+Move 40.
+
+---
+
+Another Heap:
+
+```
+          100
+        /      \
+      95        90
+     /  \      / \
+   20   30    80 70
+```
+
+The last element is **70**.
+
+It is **not** the smallest element.
+
+We still move **70** to the root.
+
+The rule depends on **position**, not value.
+
+---
+
+# Why the Last Element?
+
+Because removing the last element from an array is O(1).
+
+Heap is stored as an array.
+
+Removing an element from the middle would require shifting many elements.
+
+Therefore:
+
+- Move the last element to the root.
+- Remove the last array element.
+- Preserve the Shape Property.
+
+---
+
+# Which Property Breaks?
+
+After moving the last element to the root:
+
+### Shape Property
+
+Still valid.
+
+Reason:
+
+Only the last node was removed.
+
+The Complete Binary Tree is preserved.
+
+---
+
+### Heap Property
+
+May become invalid.
+
+Example:
+
+```
+          40
+        /      \
+      90        80
+```
+
+Now:
+
+```
+40 < 90
+```
+
+The Heap Property is broken.
+
+Fortunately, we already know how to repair Heap Property.
+
+---
+
+# Engineering Philosophy
+
+During deletion:
+
+Always preserve the property that is harder to repair.
+
+The Shape Property is difficult to rebuild.
+
+The Heap Property can be repaired efficiently using Heapify Down.
+
+Therefore:
+
+1. Preserve Shape.
+2. Repair Heap.
+
+---
+
+# Symmetry with Insertion
+
+Insertion:
+
+1. Append at the end.
+2. Shape Property preserved.
+3. Heapify Up repairs Heap Property.
+
+Deletion:
+
+1. Move last element to the root.
+2. Shape Property preserved.
+3. Heapify Down repairs Heap Property.
+
+The design philosophy is identical.
+
+---
+
+# Complexity
+
+Moving the last element:
+
+```
+O(1)
+```
+
+Removing the last array element:
+
+```
+O(1)
+```
+
+The remaining work is Heapify Down, which will take O(log n).
+
+---
+
+# Common Interview Mistakes
+
+### Mistake 1
+
+Replacing the root with the larger child.
+
+Correct:
+
+Always replace the root with the last element.
+
+---
+
+### Mistake 2
+
+Thinking we choose the smallest element.
+
+Correct:
+
+We choose the last element, regardless of its value.
+
+---
+
+### Mistake 3
+
+Trying to preserve the Heap Property first.
+
+Correct:
+
+Always preserve the Shape Property first.
+
+Repair the Heap Property afterwards.
+
+---
+
+# Key Takeaways
+
+- Deletion creates an empty root.
+- The last element always replaces the root.
+- This preserves the Complete Binary Tree.
+- The Heap Property may break temporarily.
+- Heapify Down is the repair algorithm.
+- The algorithm prioritizes preserving the Shape Property over the Heap Property.
+==================
+
