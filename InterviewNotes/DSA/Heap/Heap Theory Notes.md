@@ -3021,3 +3021,178 @@ Although Heapify Down has a worst-case complexity of O(log n), most nodes are cl
 - Most Heapify Down operations are much cheaper.
 - Only a few nodes are expensive.
 - Total Build Heap complexity is O(n).
+
+# This is the interview explanation
+
+If I were interviewing at Google and someone asked me:
+
+> "Why is Build Heap O(n)?"
+
+I'd say:
+
+> "Although a single Heapify Down can take O(log n), most nodes are near the leaves and therefore move very little. About half the nodes are leaves and do zero work, about one-fourth move at most one level, one-eighth move at most two levels, and so on. The number of nodes decreases exponentially as the possible work increases. The total work forms a converging geometric series, so the overall complexity is O(n).
+
+
+================
+# One final observation
+
+Notice something incredible.
+
+Every complexity in Heap now has a story.
+
+- **Peek = O(1)** because the answer is always at the root.
+- **Insert = O(log n)** because only one upward path is repaired.
+- **Extract Max = O(log n)** because only one downward path is repaired.
+- **Build Heap = O(n)** because most Heapify Down operations are tiny.
+======================
+# Heap Handbook – Session 3.9
+## Topic: Interview Proof – Why Build Heap is O(n)
+
+---
+
+# The Common Misconception
+
+Many candidates think:
+
+```
+n Heapify Down operations
+
+×
+
+O(log n)
+
+=
+
+O(n log n)
+```
+
+This is incorrect.
+
+Reason:
+
+It assumes every Heapify Down travels the full height of the tree.
+
+---
+
+# Actual Observation
+
+Nodes near the bottom perform very little work.
+
+| Nodes | Maximum Work |
+|------:|-------------:|
+| n/2 | 0 |
+| n/4 | 1 |
+| n/8 | 2 |
+| n/16 | 3 |
+| ... | ... |
+| 1 | log n |
+
+---
+
+# Total Work
+
+```
+(n/2 × 0)
+
++
+
+(n/4 × 1)
+
++
+
+(n/8 × 2)
+
++
+
+(n/16 × 3)
+
++
+
+...
+```
+
+Factor out `n`.
+
+```
+n × (
+
+1/4
+
++
+
+2/8
+
++
+
+3/16
+
++
+
+4/32
+
++
+
+...
+)
+```
+
+The remaining series converges to a constant.
+
+Therefore:
+
+```
+Build Heap = O(n)
+```
+
+---
+
+# Intuition
+
+As we move upward:
+
+- Work per node increases.
+- Number of nodes decreases exponentially.
+
+The decrease in the number of nodes is much faster than the increase in work.
+
+Therefore, the average work per node remains constant.
+
+Total work becomes:
+
+```
+Number of Nodes × Constant
+
+=
+
+O(n)
+```
+
+---
+
+# Interview Answer
+
+Although one Heapify Down operation has a worst-case complexity of O(log n), most nodes are located near the leaves and therefore move very little. Only a few nodes near the root can move many levels. The total work forms a converging geometric series, resulting in an overall complexity of O(n).
+
+---
+
+# Complexity Summary
+
+| Operation | Time Complexity |
+|-----------|-----------------|
+| Peek | O(1) |
+| Insert | O(log n) |
+| Heapify Up | O(log n) |
+| Extract Max | O(log n) |
+| Heapify Down | O(log n) |
+| Build Heap | O(n) |
+
+---
+
+# Key Takeaways
+
+- Do not multiply `n × log n` blindly.
+- Analyze the actual work performed by each node.
+- Most Heapify Down operations are very cheap.
+- Only a few nodes perform expensive work.
+- The overall Build Heap complexity is O(n).
+=====================
