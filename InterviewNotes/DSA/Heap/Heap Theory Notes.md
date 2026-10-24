@@ -2934,3 +2934,90 @@ Leaves are already valid heaps.
 - Start from `(n // 2) - 1`.
 - Process nodes backwards.
 - Build Heap runs in **O(n)**.
+
+==========================
+# Heap Handbook – Session 3.8
+## Topic: Intuition Behind O(n) Build Heap
+
+---
+
+# The Common Misconception
+
+Build Heap performs Heapify Down multiple times.
+
+Heapify Down is O(log n).
+
+Therefore:
+
+```
+Build Heap = O(n log n)
+```
+
+This reasoning is incorrect.
+
+---
+
+# Why?
+
+It assumes every Heapify Down travels the full height of the tree.
+
+That never happens.
+
+---
+
+# Observation
+
+Nodes near the leaves have very little work.
+
+Example:
+
+| Node Position | Maximum Movement |
+|---------------|-----------------:|
+| Leaves | 0 |
+| Parents of Leaves | 1 |
+| Next Level | 2 |
+| Root | log n |
+
+---
+
+# Important Pattern
+
+As we move upward:
+
+- Work per node increases.
+- Number of nodes decreases rapidly.
+
+Only one node (the root) can perform the maximum amount of work.
+
+Most nodes perform almost no work.
+
+---
+
+# Intuition
+
+Many cheap Heapify Down operations.
+
+Very few expensive Heapify Down operations.
+
+The cheap operations dominate the total cost.
+
+Therefore:
+
+```
+Build Heap = O(n)
+```
+
+---
+
+# Interview Explanation
+
+Although Heapify Down has a worst-case complexity of O(log n), most nodes are close to the leaves and therefore move only a few levels. Only a few nodes near the root can travel the full height. Summing the actual work across all nodes gives O(n).
+
+---
+
+# Key Takeaways
+
+- Worst case for one Heapify Down is O(log n).
+- Most Heapify Down operations are much cheaper.
+- Only a few nodes are expensive.
+- Total Build Heap complexity is O(n).
