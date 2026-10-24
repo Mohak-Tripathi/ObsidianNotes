@@ -690,6 +690,30 @@ we will derive these formulas from first principles.
 - Pointer-based implementation is unnecessary.
 - Tree explains the algorithm.
 - Array optimizes memory and performance.
+  
+  So => we started with:
+
+1. We need a Priority Queue.
+2. We need low height.
+3. Therefore, choose a Complete Binary Tree.
+4. A Complete Binary Tree has a predictable layout.
+5. Therefore, an array becomes the best representation.
+
+The implementation **follows** from the mathematical property.
+
+It wasn't an arbitrary choice.
+
+---
+
+# One sentence to remember for interviews
+
+If an interviewer asks:
+
+> **"Why is Heap implemented using an array instead of nodes?"**
+
+A strong answer is:
+
+> **Because a Heap is always a Complete Binary Tree. The position of every node is predictable, so parent-child relationships can be computed from indices. Pointers become redundant, reducing memory usage and improving cache locality while keeping operations O(1) for navigation.**
 ================
 
 
