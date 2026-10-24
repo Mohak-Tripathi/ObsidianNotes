@@ -1261,3 +1261,431 @@ Exactly what a Priority Queue needs.
 - Root always contains the global maximum (Max Heap) or minimum (Min Heap).
 ================================
 
+
+# Heap Handbook – Session 2.5
+## Topic: Why Heap Height is O(log n)
+
+---
+
+# Why Do We Care About Height?
+
+Every Heap operation travels only along one path.
+
+Examples:
+
+- Insert
+- Delete
+- Heapify Up
+- Heapify Down
+
+The maximum distance travelled equals the height of the tree.
+
+So we must first understand:
+
+Why is the height logarithmic?
+
+---
+
+# Imagine Building Levels
+
+Level 0
+
+```
+●
+```
+
+Nodes = 1
+
+---
+
+Level 1
+
+```
+    ●
+   / \
+  ●   ●
+```
+
+Nodes = 3
+
+---
+
+Level 2
+
+```
+        ●
+      /   \
+     ●     ●
+    / \   / \
+   ●  ●  ●  ●
+```
+
+Nodes = 7
+
+---
+
+Level 3
+
+```
+15 nodes
+```
+
+Notice the pattern.
+
+| Level | Nodes Added | Total Nodes |
+|--------|------------:|------------:|
+|0|1|1|
+|1|2|3|
+|2|4|7|
+|3|8|15|
+|4|16|31|
+
+Every new level doubles.
+
+---
+
+# General Formula
+
+A complete binary tree with height h contains:
+
+```
+1 + 2 + 4 + ... + 2^h
+```
+
+This geometric series equals:
+
+```
+2^(h+1) - 1
+```
+
+Therefore:
+
+```
+n = 2^(h+1) - 1
+```
+
+---
+
+# Solve for Height
+
+```
+n = 2^(h+1) - 1
+```
+
+Move 1:
+
+```
+n + 1 = 2^(h+1)
+```
+
+Take log₂:
+
+```
+log₂(n + 1) = h + 1
+```
+
+Therefore:
+
+```
+h = log₂(n + 1) - 1
+```
+
+Ignoring constants:
+
+```
+Height = O(log n)
+```
+
+---
+
+# Intuition
+
+Every level doubles the number of nodes.
+
+Height grows very slowly.
+
+Example:
+
+| Nodes | Height |
+|-------:|-------:|
+|1|0|
+|3|1|
+|7|2|
+|15|3|
+|31|4|
+|1023|9|
+|1,048,575|19|
+
+Even with more than one million nodes...
+
+The height is only about **20**.
+
+That's why Heap operations are extremely fast.
+
+---
+
+# Why This Matters
+
+Insert:
+
+Starts at the last node and moves upward.
+
+Maximum movement:
+
+```
+Height
+```
+
+Delete:
+
+Starts at the root and moves downward.
+
+Maximum movement:
+
+```
+Height
+```
+
+Heapify:
+
+Also moves at most one root-to-leaf path.
+
+Therefore:
+
+```
+Insert      = O(log n)
+
+Delete      = O(log n)
+
+Heapify Up  = O(log n)
+
+Heapify Down= O(log n)
+```
+
+All complexities come directly from the logarithmic height.
+
+---
+
+# Key Takeaways
+
+- Every level doubles the number of nodes.
+- Total nodes after height h:
+
+```
+2^(h+1)-1
+```
+
+- Rearranging gives:
+
+```
+Height = O(log n)
+```
+
+- Every Heap operation travels along at most one path.
+
+Therefore almost every Heap operation is O(log n).
+=============================
+
+# Heap Handbook – Session 2.4 (Clarification)
+## Topic: Understanding the Heap Property Deeply
+
+---
+
+# Biggest Realization
+
+Initially, it may seem that a Max Heap only guarantees:
+
+> The root contains the maximum element.
+
+This is true, but **it is not the complete Heap Property**.
+
+The actual Heap Property is:
+
+> **Every parent must dominate its own children.**
+
+For a Max Heap:
+
+```
+Parent >= Left Child
+
+Parent >= Right Child
+```
+
+This rule applies to **every node** in the tree, not just the root.
+
+---
+
+# Local Ordering vs Global Ordering
+
+This is the biggest conceptual difference between a Heap and a Binary Search Tree.
+
+## Binary Search Tree (BST)
+
+Maintains **global ordering**.
+
+Rule:
+
+```
+Left Subtree < Root < Right Subtree
+```
+
+Every node knows how its entire left and right subtrees are ordered.
+
+Searching becomes efficient because of this global ordering.
+
+---
+
+## Heap
+
+Maintains **local ordering** only.
+
+Rule:
+
+```
+Parent >= Children
+```
+
+Nothing else is guaranteed.
+
+There is:
+
+- No comparison between siblings.
+- No comparison between cousins.
+- No ordering between different subtrees.
+
+Only direct parent-child relationships matter.
+
+---
+
+# Example of a Valid Max Heap
+
+```
+          100
+        /      \
+      20        99
+     /  \      /  \
+   18   17    98   97
+```
+
+Many people think this looks "wrong" because:
+
+```
+20 << 99
+```
+
+But this is a perfectly valid Max Heap.
+
+Reason:
+
+The Heap never compares siblings.
+
+It only checks:
+
+- 100 > 20
+- 100 > 99
+- 20 > 18
+- 20 > 17
+- 99 > 98
+- 99 > 97
+
+Every parent dominates its own children.
+
+Therefore the Heap Property is satisfied.
+
+---
+
+# Example of an Invalid Max Heap
+
+```
+        100
+       /
+      65
+     /
+    95
+```
+
+This violates the Heap Property because:
+
+```
+65 < 95
+```
+
+The parent lost to its own child.
+
+Therefore this is **not** a valid Heap.
+
+---
+
+# Why Doesn't Heap Need Global Ordering?
+
+The Priority Queue only asks one question:
+
+> "Who has the highest priority?"
+
+That answer is always stored at the root.
+
+The exact ordering of every other element is unnecessary.
+
+Maintaining global ordering would require much more work, like a Binary Search Tree.
+
+Heap avoids this by maintaining only local ordering.
+
+---
+
+# Connection to Heap Operations
+
+This local ordering is the reason Heap operations are efficient.
+
+Suppose an insertion violates the Heap Property.
+
+Only one path from the inserted node to the root can be incorrect.
+
+We repair only that path.
+
+Similarly, after deletion, only one path from the root downward can violate the Heap Property.
+
+We repair only that path.
+
+Because the tree height is O(log n), these repairs are also O(log n).
+
+---
+
+# Mental Model
+
+Think of a company hierarchy.
+
+```
+CEO
+│
+├── VP 1
+│   ├── Manager
+│   └── Manager
+│
+└── VP 2
+    ├── Manager
+    └── Manager
+```
+
+The CEO must outrank the VPs.
+
+Each VP must outrank their own managers.
+
+Do the two VPs need to be ranked relative to each other?
+
+No.
+
+Similarly:
+
+A Heap only guarantees that every manager outranks their direct reports.
+
+It does not globally rank every employee.
+
+---
+
+# Interview Takeaways
+
+- Heap maintains **local ordering**, not global ordering.
+- Every parent must satisfy the Heap Property.
+- The root being maximum (or minimum) is a consequence of the Heap Property, not the entire property itself.
+- Local ordering is what allows Heap operations to repair only one path, leading to O(log n) complexity.
+
