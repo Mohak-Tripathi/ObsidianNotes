@@ -2582,3 +2582,184 @@ Repair the Heap Property afterwards.
 - The algorithm prioritizes preserving the Shape Property over the Heap Property.
 ==================
 
+# Heap Handbook – Session 3.6
+## Topic: Heapify Down (Bubble Down / Sift Down)
+
+---
+
+# Objective
+
+Repair the Heap Property after deleting the root.
+
+Deletion preserves the Shape Property.
+
+Heapify Down restores the Heap Property.
+
+---
+
+# Initial State
+
+After Extract Max:
+
+1. Remove the root.
+2. Move the last element to the root.
+
+Example:
+
+```
+          40
+        /      \
+      90        80
+     /  \      /
+   70   60    50
+```
+
+Shape Property is preserved.
+
+Heap Property is violated.
+
+---
+
+# Key Observation
+
+The new root may be smaller than its children.
+
+Only the path from the root downward can violate the Heap Property.
+
+No other branches are affected.
+
+---
+
+# Which Child Should We Swap With?
+
+For a Max Heap:
+
+Always swap with the **larger child**.
+
+Reason:
+
+The parent must dominate **both** children after the swap.
+
+Swapping with the smaller child may still leave the larger child greater than the parent.
+
+---
+
+# Algorithm
+
+1. Compare with both children.
+2. Select the larger child.
+3. If the Heap Property already holds, stop.
+4. Otherwise, swap.
+5. Continue downward.
+
+---
+
+# Python Implementation
+
+```python
+def heapify_down(heap, index):
+    n = len(heap)
+
+    while True:
+        largest = index
+
+        left = 2 * index + 1
+        right = 2 * index + 2
+
+        if left < n and heap[left] > heap[largest]:
+            largest = left
+
+        if right < n and heap[right] > heap[largest]:
+            largest = right
+
+        if largest == index:
+            break
+
+        heap[index], heap[largest] = heap[largest], heap[index]
+        index = largest
+```
+
+---
+
+# Extract Max
+
+```python
+def extract_max(heap):
+    if not heap:
+        return None
+
+    if len(heap) == 1:
+        return heap.pop()
+
+    maximum = heap[0]
+
+    heap[0] = heap.pop()
+
+    heapify_down(heap, 0)
+
+    return maximum
+```
+
+---
+
+# Complexity
+
+Heapify Down:
+
+```
+O(log n)
+```
+
+Extract Max:
+
+```
+O(log n)
+```
+
+Reason:
+
+Only one root-to-leaf path is traversed.
+
+---
+
+# Common Interview Mistakes
+
+### Mistake 1
+
+Swapping with the smaller child.
+
+Correct:
+
+Always swap with the larger child in a Max Heap.
+
+---
+
+### Mistake 2
+
+Checking only one child.
+
+Correct:
+
+Compare both children first, then choose the larger one.
+
+---
+
+### Mistake 3
+
+Continuing even when the Heap Property is already satisfied.
+
+Correct:
+
+Stop immediately once the current node dominates both children.
+
+---
+
+# Key Takeaways
+
+- Heapify Down repairs the Heap Property after deletion.
+- Only one downward path can be affected.
+- Always compare both children.
+- Swap with the larger child (Max Heap).
+- Time Complexity = O(log n).
+
+==================
