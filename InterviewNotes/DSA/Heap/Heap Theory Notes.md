@@ -3490,3 +3490,401 @@ Heap Sort first builds the Heap in O(n), then repeatedly extracts the maximum.
 - Space complexity is O(1).
 
 =========================
+
+# Heap Handbook – Session 4.1
+## Topic: Priority Queue (Abstract Data Type)
+
+---
+
+# Objective
+
+Understand the difference between a **Priority Queue** and a **Heap**.
+
+---
+
+# Abstract Data Type (ADT)
+
+An ADT defines **what operations** a data structure should support.
+
+For a Priority Queue:
+
+- Insert
+- Peek highest/lowest priority
+- Remove highest/lowest priority
+
+The ADT does **not** specify how these operations are implemented.
+
+---
+
+# Data Structure
+
+A Data Structure defines **how** the ADT is implemented.
+
+Possible implementations:
+
+- Heap
+- Balanced BST
+- Sorted Array
+- Unsorted Array
+- Linked List
+
+Each implementation has different time complexities.
+
+---
+
+# Why Heap?
+
+Heap provides an excellent balance:
+
+| Operation | Complexity |
+|-----------|------------|
+| Insert | O(log n) |
+| Peek | O(1) |
+| Extract | O(log n) |
+| Build Heap | O(n) |
+
+Heap maintains only the ordering required for a Priority Queue.
+
+---
+
+# Heap vs Priority Queue
+
+Priority Queue:
+
+- Concept (ADT)
+- Defines behavior
+
+Heap:
+
+- Data Structure
+- One implementation of a Priority Queue
+
+---
+
+# Python
+
+Python provides:
+
+```python
+import heapq
+```
+
+Important:
+
+`heapq` implements a **Min Heap**.
+
+For Max Heap behavior, a common trick is to store negative values.
+
+---
+
+# Common Interview Mistakes
+
+### Mistake 1
+
+Saying Heap and Priority Queue are the same.
+
+Correct:
+
+Priority Queue is the ADT.
+
+Heap is one implementation.
+
+---
+
+### Mistake 2
+
+Thinking a Priority Queue must use a Heap.
+
+Correct:
+
+It can also be implemented using arrays, linked lists, or BSTs.
+
+Heap is simply the most efficient general-purpose implementation.
+
+---
+
+# Key Takeaways
+
+- Priority Queue defines behavior.
+- Heap is a data structure that efficiently implements that behavior.
+- Interview problems usually ask for a Priority Queue, while the implementation is typically a Heap.
+
+
+====================
+# Heap Handbook – Session 5.1
+## Topic: How to Recognize Heap Problems
+
+---
+
+# Objective
+
+Identify the situations where a Heap is the right data structure.
+
+---
+
+# Heap Recognition Patterns
+
+## Pattern 1 — Repeated Maximum / Minimum
+
+Repeatedly retrieve the highest or lowest priority element.
+
+Examples:
+
+- Task scheduling
+- CPU scheduling
+- Emergency queues
+
+---
+
+## Pattern 2 — Top K Problems
+
+Only the best K elements are required.
+
+Examples:
+
+- Kth Largest Element
+- Top K Frequent Elements
+- K Closest Points
+
+Question to ask:
+
+> Do I really need to sort everything?
+
+---
+
+## Pattern 3 — Streaming Data
+
+Data arrives continuously.
+
+Need fast updates and queries.
+
+Examples:
+
+- Running median
+- Live leaderboard
+- Streaming analytics
+
+---
+
+## Pattern 4 — Merge Multiple Sorted Structures
+
+Repeatedly select the smallest (or largest) among several sorted lists.
+
+Examples:
+
+- Merge K Sorted Lists
+- Merge K Sorted Arrays
+
+---
+
+## Pattern 5 — Greedy Optimization
+
+Repeatedly choose the best available option.
+
+Examples:
+
+- IPO
+- Task Scheduler
+- Maximum Capital
+
+---
+
+# When NOT to Use a Heap
+
+If only one maximum/minimum query is required:
+
+```
+Single scan
+
+O(n)
+```
+
+A Heap is unnecessary.
+
+---
+
+# Interview Checklist
+
+Ask yourself:
+
+- Do I repeatedly need the minimum or maximum?
+- Do I only need the Top K elements?
+- Is the data changing dynamically?
+- Am I repeatedly choosing the best available option?
+
+If the answer is **yes**, consider using a Heap.
+
+---
+
+# Key Takeaways
+
+- Heap is useful for repeated selection problems.
+- Top K is one of the strongest Heap signals.
+- Streaming data often suggests a Heap.
+- A single maximum/minimum query usually does not require a Heap.
+
+
+============
+I like this approach much more than solving random Heap questions. We'll solve **patterns**, not individual problems. Once you master a pattern, dozens of LeetCode questions become easy.
+
+Here's the roadmap I'd recommend for a FAANG interview.
+
+---
+
+# Pattern 1 — Top K / K-th Element (⭐⭐⭐⭐⭐ Highest Priority)
+
+This is the foundation of Heap interviews.
+
+|Order|LeetCode|Problem|
+|---|---|---|
+|1|**215**|Kth Largest Element in an Array|
+|2|**703**|Kth Largest Element in a Stream|
+|3|**347**|Top K Frequent Elements|
+|4|**692**|Top K Frequent Words|
+|5|**973**|K Closest Points to Origin|
+|6|**658**|Find K Closest Elements|
+
+### Concepts you'll learn
+
+- Fixed-size Min Heap
+- When to use Min Heap vs Max Heap
+- Keep only the best K elements
+- Heap + HashMap
+
+---
+
+# Pattern 2 — Merge Multiple Sorted Structures
+
+|Order|LeetCode|Problem|
+|---|---|---|
+|1|**23**|Merge K Sorted Lists|
+|2|**378**|Kth Smallest Element in a Sorted Matrix|
+|3|**632**|Smallest Range Covering Elements from K Lists|
+|4|**373**|Find K Pairs with Smallest Sums|
+
+### Concepts
+
+- Multi-way merge
+- Heap stores one candidate from each list
+- Merge pattern
+
+---
+
+# Pattern 3 — Streaming / Two Heaps
+
+|Order|LeetCode|Problem|
+|---|---|---|
+|1|**295**|Find Median from Data Stream|
+|2|**480**|Sliding Window Median|
+
+### Concepts
+
+- Max Heap + Min Heap
+- Balance two heaps
+- Running median
+
+---
+
+# Pattern 4 — Greedy + Heap
+
+|Order|LeetCode|Problem|
+|---|---|---|
+|1|**621**|Task Scheduler|
+|2|**502**|IPO|
+|3|**630**|Course Schedule III|
+|4|**253**|Meeting Rooms II _(Premium, but excellent concept)_|
+|5|**857**|Minimum Cost to Hire K Workers|
+
+### Concepts
+
+- Choose the best available option
+- Dynamic optimization
+- Greedy + Heap
+
+---
+
+# Pattern 5 — Heap Design & Advanced Applications
+
+|Order|LeetCode|Problem|
+|---|---|---|
+|1|**703**|Kth Largest Element in a Stream _(Design version)_|
+|2|**355**|Design Twitter|
+|3|**767**|Reorganize String|
+|4|**1642**|Furthest Building You Can Reach|
+|5|**2402**|Meeting Rooms III|
+
+### Concepts
+
+- Designing systems using heaps
+- Event simulation
+- Scheduling
+- Priority-based processing
+
+---
+
+# ⭐ The Order I Recommend (FAANG Optimized)
+
+This is the exact order I'd teach:
+
+### Foundation
+
+1. **215** — Kth Largest Element in an Array ⭐⭐⭐⭐⭐
+2. **703** — Kth Largest Element in a Stream
+3. **347** — Top K Frequent Elements
+4. **973** — K Closest Points to Origin
+
+---
+
+### Merge Pattern
+
+5. **23** — Merge K Sorted Lists ⭐⭐⭐⭐⭐
+6. **378** — Kth Smallest Element in a Sorted Matrix
+7. **373** — Find K Pairs with Smallest Sums
+
+---
+
+### Two Heaps
+
+8. **295** — Find Median from Data Stream ⭐⭐⭐⭐⭐
+9. **480** — Sliding Window Median
+
+---
+
+### Greedy + Heap
+
+10. **621** — Task Scheduler
+11. **502** — IPO
+12. **630** — Course Schedule III
+
+---
+
+### Advanced
+
+13. **767** — Reorganize String
+14. **1642** — Furthest Building You Can Reach
+15. **2402** — Meeting Rooms III
+
+---
+
+# 🎯 My recommendation
+
+Don't solve all 15 immediately.
+
+These **8 problems** are the highest return on investment for FAANG interviews:
+
+1. ✅ **215** – Kth Largest Element in an Array
+2. ✅ **347** – Top K Frequent Elements
+3. ✅ **23** – Merge K Sorted Lists
+4. ✅ **295** – Find Median from Data Stream
+5. ✅ **621** – Task Scheduler
+6. ✅ **502** – IPO
+7. ✅ **973** – K Closest Points to Origin
+8. ✅ **703** – Kth Largest Element in a Stream
+
+If you deeply understand these eight, you'll recognize and solve many other Heap questions because they represent the core interview patterns.
+
+I suggest we start with **LeetCode 215 – Kth Largest Element in an Array**. It teaches the single most important Heap insight in interviews:
+
+> **Why do we use a Min Heap to find the Kth largest element instead of a Max Heap?**
+
+That question changes how you think about Top K problems, and it's the perfect bridge from learning the data structure to applying it.
