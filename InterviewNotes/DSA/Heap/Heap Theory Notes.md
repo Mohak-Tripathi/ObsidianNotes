@@ -55,6 +55,80 @@ A **Heap** is the most common implementation of that ADT.
 10. IPO
 11. Find Maximum Capital
 12. Smallest Range Covering K Lists
+    
+    ## Pattern 1 — Basic Heap
+
+- Implement Heap
+- Heap Sort
+
+**Concept:** Master the data structure itself.
+
+---
+
+## Pattern 2 — K-th Problems
+
+- Kth Largest Element
+- Kth Smallest Element
+- K Closest Points
+- K Closest Numbers
+
+**Core question:**
+
+> "I don't need everything sorted. I only need the best K."
+
+This is one of the highest-frequency interview patterns.
+
+---
+
+## Pattern 3 — Frequency Problems
+
+- Top K Frequent Elements
+- Top K Frequent Words
+
+New idea:
+
+**Hash Map + Heap**
+
+This is another classic FAANG combination.
+
+---
+
+## Pattern 4 — Merge Problems
+
+- Merge K Sorted Lists
+- Merge K Sorted Arrays
+- Smallest Range Covering K Lists
+
+New idea:
+
+Keep one candidate from each sorted list inside the heap.
+
+---
+
+## Pattern 5 — Two Heaps
+
+One of my favorite patterns.
+
+Problems:
+
+- Median From Data Stream
+- Sliding Window Median
+
+You'll learn why **one max heap + one min heap** can maintain a running median efficiently.
+
+---
+
+## Pattern 6 — Greedy + Heap
+
+Advanced problems:
+
+- IPO
+- Task Scheduler
+- Maximum Capital
+- Meeting Rooms
+- Course Schedule III
+
+These teach you **when** to use a heap in optimization problems.
 
 ## Phase 7 – Revision Notes
 This document will be updated after every session and will become the single revision handbook before interviews.
