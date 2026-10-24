@@ -3888,3 +3888,117 @@ I suggest we start with **LeetCode 215 – Kth Largest Element in an Array**. It
 > **Why do we use a Min Heap to find the Kth largest element instead of a Max Heap?**
 
 That question changes how you think about Top K problems, and it's the perfect bridge from learning the data structure to applying it.
+
+
+===================
+
+# Heap Handbook – Session 5.2
+## Topic: Python `heapq` Essentials
+
+---
+
+# Python Heap
+
+Python's `heapq` module implements a **Min Heap**.
+
+A heap is simply a Python list that satisfies the Heap Property.
+
+---
+
+# Import
+
+```python
+import heapq
+```
+
+---
+
+# Build a Heap from an Existing List
+
+```python
+nums = [4, 8, 2, 7]
+
+heapq.heapify(nums)
+```
+
+Important:
+
+- `heapify()` modifies the list **in place**.
+- It returns `None`.
+
+---
+
+# Create an Empty Heap
+
+```python
+heap = []
+```
+
+Insert elements using:
+
+```python
+heapq.heappush(heap, value)
+```
+
+---
+
+# Common Operations
+
+```python
+heapq.heapify(nums)          # O(n)
+
+heapq.heappush(heap, x)      # O(log n)
+
+heapq.heappop(heap)          # O(log n)
+
+heap[0]                      # Smallest element (O(1))
+
+heapq.heappushpop(heap, x)   # Push then pop
+
+heapq.heapreplace(heap, x)   # Replace root then heapify
+```
+
+---
+
+# Two Ways to Use `heapq`
+
+### Existing Data
+
+```python
+heapq.heapify(nums)
+```
+
+Use when all data is already available.
+
+---
+
+### Streaming Data
+
+```python
+heap = []
+
+heapq.heappush(heap, value)
+```
+
+Use when processing values one at a time.
+
+---
+
+# LeetCode 215 Insight
+
+For **Kth Largest Element**, do **not** build a heap of all `n` elements.
+
+Instead:
+
+- Maintain a Min Heap of size `k`.
+- If the heap grows beyond `k`, remove the smallest element.
+- At the end, the root is the Kth largest element.
+
+---
+
+# Key Takeaways
+
+- `heapify()` modifies the list in place.
+- A heap is just a Python list with the Heap Property.
+- `heapq` provides only a Min Heap.
+- Use `heappush()` and `heappop()` to maintain the Heap Property automatically.
