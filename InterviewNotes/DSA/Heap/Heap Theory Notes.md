@@ -2763,3 +2763,174 @@ Stop immediately once the current node dominates both children.
 - Time Complexity = O(log n).
 
 ==================
+
+# Heap Handbook – Session 3.7
+## Topic: Build Heap (Bottom-Up Construction)
+
+---
+
+# Objective
+
+Build a Heap from an unsorted array more efficiently than inserting elements one by one.
+
+---
+
+# Naive Approach
+
+Insert every element individually.
+
+```
+n insertions
+
+Each insertion = O(log n)
+```
+
+Total:
+
+```
+O(n log n)
+```
+
+Correct but not optimal.
+
+---
+
+# Better Observation
+
+The input array already represents a **Complete Binary Tree**.
+
+Only the Heap Property may be violated.
+
+The Shape Property already exists.
+
+---
+
+# Important Observation
+
+Leaves are always valid heaps.
+
+Reason:
+
+A leaf has no children.
+
+Therefore, it automatically satisfies the Heap Property.
+
+Only internal nodes need repair.
+
+---
+
+# Bottom-Up Strategy
+
+Instead of fixing the root first:
+
+Start from the **last internal node**.
+
+Move backward to the root.
+
+At every node:
+
+```
+Heapify Down
+```
+
+By the time a parent is processed, both of its children are already valid heaps.
+
+---
+
+# Last Internal Node Formula
+
+```
+Last Internal Node = (n // 2) - 1
+```
+
+Example:
+
+```
+n = 7
+
+Indices:
+
+0 1 2 3 4 5 6
+
+Leaves:
+
+3 4 5 6
+
+Last Internal Node:
+
+2
+```
+
+---
+
+# Python Implementation
+
+```python
+def build_heap(heap):
+    n = len(heap)
+
+    for i in range((n // 2) - 1, -1, -1):
+        heapify_down(heap, i)
+```
+
+---
+
+# Complexity Intuition
+
+Each Heapify Down is **at most** O(log n).
+
+However:
+
+- Most nodes are near the leaves.
+- Most Heapify Down operations travel only a few levels.
+- Only the root can travel the full height.
+
+Therefore, the total work across all Heapify Down calls is:
+
+```
+O(n)
+```
+
+The mathematical proof will be covered separately.
+
+---
+
+# Common Interview Mistakes
+
+### Mistake 1
+
+Building the Heap using repeated insertion.
+
+Correct:
+
+Use Bottom-Up Heap Construction.
+
+---
+
+### Mistake 2
+
+Starting Heapify Down from the root.
+
+Correct:
+
+Start from the last internal node.
+
+---
+
+### Mistake 3
+
+Heapifying leaf nodes.
+
+Correct:
+
+Leaves are already valid heaps.
+
+---
+
+# Key Takeaways
+
+- Bottom-Up construction is more efficient than repeated insertion.
+- Leaves never require Heapify Down.
+- Start from `(n // 2) - 1`.
+- Process nodes backwards.
+- Build Heap runs in **O(n)**.
