@@ -368,3 +368,96 @@ When designing a priority queue, engineers wanted:
 - A layout that can be stored efficiently in an array.
 
 A **Complete Binary Tree** is the simplest shape that satisfies all these requirements.
+
+from textwrap import dedent
+import pypandoc
+
+text=dedent("""
+# Heap Handbook - Session 2.1 Addendum
+
+## Questions Clarified
+
+### 1. Rotation (Very Brief)
+
+A rotation is a small restructuring operation used in self-balancing Binary Search Trees (like AVL or Red-Black Trees).
+
+Example:
+
+Before:
+
+```
+    30
+   /
+ 20
+/
+10
+```
+
+After one right rotation:
+
+```
+   20
+  /  \\
+10   30
+```
+
+The purpose is **not** to change the sorted order. It only changes the shape to keep the tree balanced.
+
+---
+
+### 2. Balancing Algorithm
+
+A balancing algorithm checks whether one side of the tree has become much taller than the other after insertion or deletion.
+
+If it has, it performs one or more rotations to make the height small again.
+
+Heap never performs these balancing rotations.
+
+---
+
+### 3. Binary Tree vs Binary Search Tree vs Heap
+
+These are different concepts.
+
+```
+Tree
+└── Binary Tree
+    ├── Binary Search Tree (BST)
+    └── Heap
+```
+
+**Binary Tree**
+- At most two children.
+- No ordering rules.
+
+**Binary Search Tree (BST)**
+- A Binary Tree.
+- Left < Root < Right.
+
+**Heap**
+- A Binary Tree.
+- Must be Complete.
+- Parent >= Children (Max Heap) OR Parent <= Children (Min Heap).
+
+A Heap is **NOT** a Binary Search Tree.
+
+---
+
+### 4. Why Learn It as a Tree if We Implement It Using an Array?
+
+Conceptually, a Heap is a tree because the parent-child relationships define the algorithm.
+
+Implementation-wise, because the tree is always complete, we can store it in an array without pointers.
+
+Think of it this way:
+
+- **Tree** explains the logic.
+- **Array** is the memory representation.
+
+Just like a string is conceptually a sequence of characters but is stored as an array of characters.
+
+In the next lesson we'll prove why a complete binary tree naturally maps to an array.
+""")
+
+=================
+
