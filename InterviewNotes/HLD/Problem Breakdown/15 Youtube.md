@@ -472,10 +472,4 @@ Client  — adaptive bitrate streaming:
 
 > 🔗 **HI source:** https://www.hellointerview.com/learn/system-design/problem-breakdowns/youtube
 > 
-> ⚠ **Source complete in substance. Three paste artifacts, nothing filled in from my own knowledge:**
-> 
-> 1. ⚠ **Rung labels are missing.** HI renders the two ladders as tabbed cards; the paste carries every `Approach` / `Challenges` body but no tab titles. **The labels in §4.1 ("store raw", "transcode whole files", "segment then transcode") and §4.2 ("download then play", "incremental segments", "adaptive bitrate streaming") are mine, derived from the body text.** The content under each is HI's.
-> 2. ⚠ **Diagram text is flattened** — HI's diagrams arrived as loose lines. **§6's layout and arrows are my reconstruction**; components, labels, field lists and the DAG step names are HI's. ▹ **Check it against the source page.**
-> 3. ▹ **The `+4` additional companies under "Asked at" are not named in the source** (only Amazon is).
-> 
-> ✅ **Reconciled against the original:** both FRs and all 5 NFRs with both below-the-line lists · the planning step · entities · both naive endpoints and all three evolved ones · the full video-streaming background (codec, container, bitrate, manifest types) · §4.1's metadata/Cassandra reasoning and HI's three-way partitioning aside · both three-rung ladders with every challenge listed, including HI's "why segments aren't chunking" aside · both Pattern callouts · DD1's outputs, four steps, DAG reasoning, orchestrator note and the early-processing simplification · DD2's seven steps · DD3's four-component walkthrough and both fixes · the three undeveloped dives HI flags · the final design · all three level bars. **No content gaps.**
+>
