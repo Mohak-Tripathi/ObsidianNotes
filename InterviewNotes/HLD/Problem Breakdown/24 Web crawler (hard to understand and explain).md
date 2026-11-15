@@ -2,7 +2,7 @@
 
 > 📐 **Revision note (calc):** ⭐⭐⭐ **The most complete BOE chain in your set — it runs from a hardware spec all the way to a machine count, and you should be able to reproduce it.** **10B pages · 2MB avg page · 5-day deadline.** **A network-optimised instance (`c6in.32xlarge`, `c7gn.16xlarge`) does 200 Gbps** ⇒ **200 Gbps ÷ 8 ÷ 2MB = 12,500 pages/sec theoretical** ⇒ ⭐ **assume 30% real utilisation = 3,750 pages/sec** ⇒ **10B ÷ 3,750 = 2,666,667 sec ≈ 30.9 days on one machine** ⇒ ⭐⭐ **÷ 8 machines ≈ 3.9 days, under the 5-day bar.** **Other figures: 1 req/sec/domain · `Crawl-delay: 10` in HI's example · 5 retries then "offline" · max depth 15–20 · DNS was up to 70% of thread time (Mercator) · SQS visibility timeout 30s default, up to 12 HOURS · skip files over 10MB.**
 
-> Hello Interview · Common Problems · File `05x`. **Evan King**, updated **Feb 15, 2026** · ⭐⭐ **"HARD" — third hard problem in a row** · ⭐⭐ **asked at ZoomInfo (+6) = 7 companies** · has a video walkthrough. ⚠ **NO Pattern callout — the first file in your set with none.** Cross-refs: ⭐⭐⭐ **`05p` Job Scheduler — SQS visibility timeout, `DelaySeconds`, `ApproximateReceiveCount`, DLQ. THE cross-ref; this file SHARPENS your confusion-resolved block there** · ⭐⭐ **`05u §5.3` + `05t §5.3` — the Redis lock with TTL and `SET NX`, reused here as a per-domain lock** · ⭐⭐ **`05u §5.4` — where KAFKA won; here SQS wins** · ⭐⭐ **`05o` YouTube — pipeline stages + S3 for intermediates** · ⭐ **`05r` News Aggregator — the scraping sibling** · **`02c` Kafka · `02a` Redis · `02f` DynamoDB · `01a` blob storage · `01e` caching · `01f` sharding · `03b` contention · `01i` numbers.**
+> Asked at ZoomInfo (+6) = 7 companies** · ⚠ **NO Pattern callout — the first file in your set with none.** Cross-refs: ⭐⭐⭐ **`05p` Job Scheduler — SQS visibility timeout, `DelaySeconds`, `ApproximateReceiveCount`, DLQ. THE cross-ref; this file SHARPENS your confusion-resolved block there** · ⭐⭐ **`05u §5.3` + `05t §5.3` — the Redis lock with TTL and `SET NX`, reused here as a per-domain lock** · ⭐⭐ **`05u §5.4` — where KAFKA won; here SQS wins** · ⭐⭐ **`05o` YouTube — pipeline stages + S3 for intermediates** · ⭐ **`05r` News Aggregator — the scraping sibling** · **`02c` Kafka · `02a` Redis · `02f` DynamoDB · `01a` blob storage · `01e` caching · `01f` sharding · `03b` contention · `01i` numbers.**
 > 
 > **Calibration:** ⭐⭐⭐ **TWO passes, and this is the highest-value file since `05u`.** ▸ **Three dives, all three substantial, and they map one-to-one onto the three NFRs.** ⭐⭐⭐ **But read it once for the SYSTEM and once for HI's META-ADVICE — the advice in this write-up is the richest in your whole set, and some of it directly answers questions you have asked me.**
 > 
@@ -57,7 +57,7 @@
 
 > ⭐⭐ **And one honesty caveat worth saying out loud, because it sounds like a weakness and isn't:**
 > 
-> **_"It's not possible to scrape the entire internet. Instead, we are going to scrape the vast majority of the web. Many small sites exist in the dark corners of the internet that we will not be able to reach. It may be worth clarifying this with your interviewer, but it's a general assumption of web crawling that you can't reach every page on the web."_**
+> **_"It's not possible to scrape the entire internet. Instead, we scrape the vast majority of the web. Many small sites exist in the dark corners of the internet that we will not be able to reach. ISo clarifying this with your interviewer."_**
 > 
 > ■ **— end of insert · HI write-up resumes below —**
 
@@ -72,11 +72,10 @@
 
 > ⭐⭐⭐ **THE most important paragraph in this file for you — read it twice.**
 > 
-> **_"This is why defining good non-functional requirements is so important -- especially for more senior candidates! So often I see candidates rush through the requirements and then look at me, the interviewer, wide eyed, unsure of what to do next after they have a simple design. If you've taken your time to define quality non-functional requirements, then you shouldn't run out of things to talk about until your system has met all functional and non-functional requirements, at which point, you've likely passed the interview!"_**
+> **_" If you've taken your time to define quality NFR, then you shouldn't run out of things to talk about until your system has met all functional and non-functional requirements, at which point, you've likely passed the interview!"_**
 > 
-> - ⭐⭐⭐ **Your NFRs ARE your deep-dive agenda.** ▸ **HI says it outright: _"we are going to go 1-by-1 through our non-functional requirements."_**
-> - ⭐⭐⭐ **And this file is the cleanest proof in your whole set: DD1 = fault tolerance · DD2 = politeness · DD3 = scale + efficiency. Three NFRs, three dives, nothing else.**
-> - ⭐⭐ **So the fix for "I ran out of things to say" is not more technology. It's better NFRs, earlier.**
+> - ⭐⭐⭐ **And this file is the cleanest proof: DD1 = fault tolerance · DD2 = politeness · DD3 = scale + efficiency. Three NFRs, three dives, nothing else.**
+> - 
 > 
 > ■ **— end of insert · HI write-up resumes below —**
 
